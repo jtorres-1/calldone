@@ -1,0 +1,705 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>CallDone — Your Restaurant Never Misses a Call Again</title>
+<link href="https://fonts.googleapis.com/css2?family=Syne:wght@400;600;700;800&family=DM+Sans:wght@300;400;500&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --black: #0a0a0a;
+    --white: #f5f2ed;
+    --accent: #ff4d1c;
+    --accent2: #ffb347;
+    --gray: #1a1a1a;
+    --muted: #888;
+  }
+
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+
+  body {
+    background: var(--black);
+    color: var(--white);
+    font-family: 'DM Sans', sans-serif;
+    overflow-x: hidden;
+  }
+
+  /* NAV */
+  nav {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 24px 48px;
+    position: fixed;
+    top: 0; left: 0; right: 0;
+    z-index: 100;
+    background: rgba(10,10,10,0.85);
+    backdrop-filter: blur(12px);
+    border-bottom: 1px solid rgba(255,255,255,0.06);
+  }
+
+  .logo {
+    font-family: 'Syne', sans-serif;
+    font-weight: 800;
+    font-size: 22px;
+    letter-spacing: -0.5px;
+  }
+
+  .logo span { color: var(--accent); }
+
+  nav a {
+    color: var(--white);
+    text-decoration: none;
+    font-size: 14px;
+    font-weight: 500;
+    padding: 10px 24px;
+    background: var(--accent);
+    border-radius: 100px;
+    transition: opacity 0.2s;
+  }
+
+  nav a:hover { opacity: 0.85; }
+
+  /* HERO */
+  .hero {
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    padding: 120px 48px 80px;
+    position: relative;
+    overflow: hidden;
+  }
+
+  .hero::before {
+    content: '';
+    position: absolute;
+    top: -200px; right: -200px;
+    width: 600px; height: 600px;
+    background: radial-gradient(circle, rgba(255,77,28,0.15) 0%, transparent 70%);
+    pointer-events: none;
+  }
+
+  .hero::after {
+    content: '';
+    position: absolute;
+    bottom: -100px; left: -100px;
+    width: 400px; height: 400px;
+    background: radial-gradient(circle, rgba(255,179,71,0.08) 0%, transparent 70%);
+    pointer-events: none;
+  }
+
+  .tag {
+    display: inline-block;
+    font-size: 12px;
+    font-weight: 500;
+    letter-spacing: 2px;
+    text-transform: uppercase;
+    color: var(--accent);
+    border: 1px solid rgba(255,77,28,0.3);
+    padding: 6px 16px;
+    border-radius: 100px;
+    margin-bottom: 32px;
+    width: fit-content;
+  }
+
+  h1 {
+    font-family: 'Syne', sans-serif;
+    font-size: clamp(48px, 7vw, 96px);
+    font-weight: 800;
+    line-height: 0.95;
+    letter-spacing: -3px;
+    max-width: 900px;
+    margin-bottom: 32px;
+  }
+
+  h1 em {
+    font-style: normal;
+    color: var(--accent);
+    position: relative;
+  }
+
+  .hero-sub {
+    font-size: 18px;
+    color: var(--muted);
+    max-width: 520px;
+    line-height: 1.6;
+    margin-bottom: 48px;
+    font-weight: 300;
+  }
+
+  .hero-sub strong {
+    color: var(--white);
+    font-weight: 500;
+  }
+
+  .cta-group {
+    display: flex;
+    gap: 16px;
+    align-items: center;
+    flex-wrap: wrap;
+  }
+
+  .btn-primary {
+    display: inline-block;
+    background: var(--accent);
+    color: #fff;
+    text-decoration: none;
+    font-family: 'Syne', sans-serif;
+    font-weight: 700;
+    font-size: 16px;
+    padding: 18px 40px;
+    border-radius: 100px;
+    transition: transform 0.2s, box-shadow 0.2s;
+    box-shadow: 0 0 40px rgba(255,77,28,0.3);
+  }
+
+  .btn-primary:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 0 60px rgba(255,77,28,0.5);
+  }
+
+  .demo-link {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    color: var(--white);
+    text-decoration: none;
+    font-size: 15px;
+    font-weight: 500;
+    padding: 18px 32px;
+    border: 1px solid rgba(255,255,255,0.15);
+    border-radius: 100px;
+    transition: border-color 0.2s;
+  }
+
+  .demo-link:hover { border-color: rgba(255,255,255,0.4); }
+
+  .demo-icon {
+    width: 32px; height: 32px;
+    background: rgba(255,77,28,0.15);
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 14px;
+  }
+
+  /* STATS */
+  .stats {
+    display: flex;
+    gap: 0;
+    border-top: 1px solid rgba(255,255,255,0.08);
+    border-bottom: 1px solid rgba(255,255,255,0.08);
+    margin: 0 48px;
+  }
+
+  .stat {
+    flex: 1;
+    padding: 40px 32px;
+    border-right: 1px solid rgba(255,255,255,0.08);
+  }
+
+  .stat:last-child { border-right: none; }
+
+  .stat-num {
+    font-family: 'Syne', sans-serif;
+    font-size: 48px;
+    font-weight: 800;
+    letter-spacing: -2px;
+    color: var(--accent);
+    line-height: 1;
+    margin-bottom: 8px;
+  }
+
+  .stat-label {
+    font-size: 13px;
+    color: var(--muted);
+    line-height: 1.4;
+  }
+
+  /* PAIN SECTION */
+  .pain {
+    padding: 100px 48px;
+    max-width: 1100px;
+    margin: 0 auto;
+  }
+
+  .section-label {
+    font-size: 11px;
+    letter-spacing: 3px;
+    text-transform: uppercase;
+    color: var(--muted);
+    margin-bottom: 24px;
+  }
+
+  h2 {
+    font-family: 'Syne', sans-serif;
+    font-size: clamp(32px, 4vw, 52px);
+    font-weight: 700;
+    letter-spacing: -1.5px;
+    line-height: 1.1;
+    margin-bottom: 48px;
+  }
+
+  .pain-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 2px;
+    background: rgba(255,255,255,0.05);
+    border: 1px solid rgba(255,255,255,0.08);
+  }
+
+  .pain-item {
+    background: var(--black);
+    padding: 40px 32px;
+    border-right: 1px solid rgba(255,255,255,0.05);
+  }
+
+  .pain-item:last-child { border-right: none; }
+
+  .pain-num {
+    font-family: 'Syne', sans-serif;
+    font-size: 56px;
+    font-weight: 800;
+    letter-spacing: -2px;
+    opacity: 0.1;
+    line-height: 1;
+    margin-bottom: 12px;
+  }
+
+  .pain-text {
+    font-size: 15px;
+    color: var(--muted);
+    line-height: 1.6;
+  }
+
+  .pain-text strong {
+    display: block;
+    color: var(--white);
+    font-size: 18px;
+    font-weight: 500;
+    margin-bottom: 8px;
+  }
+
+  /* HOW IT WORKS */
+  .how {
+    padding: 100px 48px;
+    background: var(--gray);
+  }
+
+  .how-inner {
+    max-width: 1100px;
+    margin: 0 auto;
+  }
+
+  .steps {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 32px;
+    margin-top: 48px;
+  }
+
+  .step {
+    position: relative;
+  }
+
+  .step-num {
+    width: 40px; height: 40px;
+    border: 1px solid rgba(255,77,28,0.4);
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-family: 'Syne', sans-serif;
+    font-size: 14px;
+    font-weight: 700;
+    color: var(--accent);
+    margin-bottom: 20px;
+  }
+
+  .step h3 {
+    font-family: 'Syne', sans-serif;
+    font-size: 18px;
+    font-weight: 700;
+    margin-bottom: 10px;
+    letter-spacing: -0.3px;
+  }
+
+  .step p {
+    font-size: 14px;
+    color: var(--muted);
+    line-height: 1.6;
+  }
+
+  /* DEMO SECTION */
+  .demo-section {
+    padding: 100px 48px;
+    max-width: 1100px;
+    margin: 0 auto;
+    text-align: center;
+  }
+
+  .phone-card {
+    display: inline-block;
+    background: var(--gray);
+    border: 1px solid rgba(255,255,255,0.1);
+    border-radius: 24px;
+    padding: 48px 64px;
+    margin-top: 48px;
+    position: relative;
+  }
+
+  .phone-card::before {
+    content: '';
+    position: absolute;
+    inset: -1px;
+    border-radius: 24px;
+    background: linear-gradient(135deg, rgba(255,77,28,0.3), transparent, rgba(255,179,71,0.15));
+    z-index: -1;
+  }
+
+  .phone-display {
+    font-family: 'Syne', sans-serif;
+    font-size: 48px;
+    font-weight: 800;
+    letter-spacing: -1px;
+    color: var(--white);
+    margin-bottom: 12px;
+  }
+
+  .phone-sub {
+    font-size: 14px;
+    color: var(--muted);
+    margin-bottom: 32px;
+  }
+
+  .pulse-btn {
+    display: inline-flex;
+    align-items: center;
+    gap: 12px;
+    background: var(--accent);
+    color: #fff;
+    text-decoration: none;
+    font-family: 'Syne', sans-serif;
+    font-weight: 700;
+    font-size: 15px;
+    padding: 16px 32px;
+    border-radius: 100px;
+    position: relative;
+  }
+
+  .pulse-btn::before {
+    content: '';
+    position: absolute;
+    inset: -4px;
+    border-radius: 100px;
+    background: var(--accent);
+    opacity: 0.3;
+    animation: pulse 2s ease-in-out infinite;
+  }
+
+  @keyframes pulse {
+    0%, 100% { transform: scale(1); opacity: 0.3; }
+    50% { transform: scale(1.08); opacity: 0; }
+  }
+
+  /* PRICING */
+  .pricing {
+    padding: 100px 48px;
+    background: var(--gray);
+  }
+
+  .pricing-inner {
+    max-width: 800px;
+    margin: 0 auto;
+    text-align: center;
+  }
+
+  .price-card {
+    background: var(--black);
+    border: 1px solid rgba(255,77,28,0.3);
+    border-radius: 24px;
+    padding: 64px;
+    margin-top: 48px;
+    position: relative;
+    overflow: hidden;
+  }
+
+  .price-card::before {
+    content: '';
+    position: absolute;
+    top: 0; left: 0; right: 0;
+    height: 2px;
+    background: linear-gradient(90deg, var(--accent), var(--accent2));
+  }
+
+  .price-main {
+    font-family: 'Syne', sans-serif;
+    font-size: 80px;
+    font-weight: 800;
+    letter-spacing: -4px;
+    line-height: 1;
+    margin-bottom: 8px;
+  }
+
+  .price-main span {
+    font-size: 32px;
+    letter-spacing: -1px;
+    vertical-align: top;
+    margin-top: 16px;
+    display: inline-block;
+  }
+
+  .price-sub {
+    color: var(--muted);
+    font-size: 14px;
+    margin-bottom: 40px;
+  }
+
+  .features {
+    list-style: none;
+    text-align: left;
+    margin-bottom: 48px;
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 16px;
+  }
+
+  .features li {
+    display: flex;
+    align-items: flex-start;
+    gap: 12px;
+    font-size: 14px;
+    color: var(--muted);
+    line-height: 1.5;
+  }
+
+  .features li::before {
+    content: '→';
+    color: var(--accent);
+    flex-shrink: 0;
+    font-weight: 700;
+  }
+
+  .btn-buy {
+    display: block;
+    background: var(--accent);
+    color: #fff;
+    text-decoration: none;
+    font-family: 'Syne', sans-serif;
+    font-weight: 700;
+    font-size: 18px;
+    padding: 22px;
+    border-radius: 100px;
+    text-align: center;
+    transition: transform 0.2s, box-shadow 0.2s;
+    box-shadow: 0 0 40px rgba(255,77,28,0.3);
+  }
+
+  .btn-buy:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 0 60px rgba(255,77,28,0.5);
+  }
+
+  .guarantee {
+    font-size: 13px;
+    color: var(--muted);
+    margin-top: 20px;
+  }
+
+  /* FOOTER */
+  footer {
+    padding: 40px 48px;
+    border-top: 1px solid rgba(255,255,255,0.08);
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+  }
+
+  footer .logo {
+    font-size: 18px;
+  }
+
+  footer p {
+    font-size: 13px;
+    color: var(--muted);
+  }
+
+  /* ANIMATIONS */
+  @keyframes fadeUp {
+    from { opacity: 0; transform: translateY(30px); }
+    to { opacity: 1; transform: translateY(0); }
+  }
+
+  .hero > * {
+    animation: fadeUp 0.8s ease forwards;
+    opacity: 0;
+  }
+
+  .tag { animation-delay: 0.1s; }
+  h1 { animation-delay: 0.2s; }
+  .hero-sub { animation-delay: 0.3s; }
+  .cta-group { animation-delay: 0.4s; }
+
+  @media (max-width: 768px) {
+    nav { padding: 20px 24px; }
+    .hero { padding: 100px 24px 60px; }
+    h1 { letter-spacing: -2px; }
+    .stats { margin: 0 24px; flex-direction: column; }
+    .stat { border-right: none; border-bottom: 1px solid rgba(255,255,255,0.08); padding: 32px 24px; }
+    .pain, .demo-section { padding: 60px 24px; }
+    .pain-grid { grid-template-columns: 1fr; }
+    .pain-item { border-right: none; border-bottom: 1px solid rgba(255,255,255,0.05); }
+    .how { padding: 60px 24px; }
+    .steps { grid-template-columns: 1fr 1fr; gap: 24px; }
+    .pricing { padding: 60px 24px; }
+    .price-card { padding: 40px 24px; }
+    .features { grid-template-columns: 1fr; }
+    .phone-card { padding: 40px 32px; }
+    .phone-display { font-size: 32px; }
+    footer { flex-direction: column; gap: 16px; text-align: center; }
+  }
+</style>
+</head>
+<body>
+
+<nav>
+  <div class="logo">Call<span>Done</span></div>
+  <a href="https://buy.stripe.com/fZu4gz175dGY5sm4fs2Ry07">Get Started — $1,000</a>
+</nav>
+
+<section class="hero">
+  <div class="tag">AI Receptionist for Restaurants</div>
+  <h1>Your restaurant never misses a <em>call</em> again.</h1>
+  <p class="hero-sub">
+    CallDone answers every call, books reservations, and handles customer questions <strong>24 hours a day</strong> — so your staff can focus on the table in front of them.
+  </p>
+  <div class="cta-group">
+    <a href="https://buy.stripe.com/fZu4gz175dGY5sm4fs2Ry07" class="btn-primary">Get CallDone — $1,000 setup</a>
+    <a href="tel:+15632871146" class="demo-link">
+      <div class="demo-icon">📞</div>
+      Hear the AI live
+    </a>
+  </div>
+</section>
+
+<div class="stats">
+  <div class="stat">
+    <div class="stat-num">62%</div>
+    <div class="stat-label">of callers hang up<br>if no one answers</div>
+  </div>
+  <div class="stat">
+    <div class="stat-num">$180</div>
+    <div class="stat-label">average value of a<br>missed reservation</div>
+  </div>
+  <div class="stat">
+    <div class="stat-num">24/7</div>
+    <div class="stat-label">CallDone answers<br>every single call</div>
+  </div>
+  <div class="stat">
+    <div class="stat-num">48hr</div>
+    <div class="stat-label">from payment to<br>your AI going live</div>
+  </div>
+</div>
+
+<section class="pain">
+  <div class="section-label">The problem</div>
+  <h2>Every missed call is a table you didn't fill.</h2>
+  <div class="pain-grid">
+    <div class="pain-item">
+      <div class="pain-num">01</div>
+      <div class="pain-text">
+        <strong>Rush hour = missed calls</strong>
+        Your staff can't answer the phone when they're slammed on the floor. Customers call once, don't leave a message, and book somewhere else.
+      </div>
+    </div>
+    <div class="pain-item">
+      <div class="pain-num">02</div>
+      <div class="pain-text">
+        <strong>After-hours calls go nowhere</strong>
+        Most reservations are booked at 9pm when your restaurant is closed. No one answers. You lose them to OpenTable.
+      </div>
+    </div>
+    <div class="pain-item">
+      <div class="pain-num">03</div>
+      <div class="pain-text">
+        <strong>Staff hate answering phones</strong>
+        Every interruption pulls your team away from guests. Calls about hours, menus, and parking waste 20+ minutes a day.
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="how">
+  <div class="how-inner">
+    <div class="section-label">How it works</div>
+    <h2>Live in 48 hours. Zero tech skills needed.</h2>
+    <div class="steps">
+      <div class="step">
+        <div class="step-num">1</div>
+        <h3>You pay online</h3>
+        <p>One-time $1,000 setup fee. We handle everything from there.</p>
+      </div>
+      <div class="step">
+        <div class="step-num">2</div>
+        <h3>We build your AI</h3>
+        <p>Trained on your menu, hours, location, and reservation flow. Sounds like a real person.</p>
+      </div>
+      <div class="step">
+        <div class="step-num">3</div>
+        <h3>Forward your calls</h3>
+        <p>One simple call forwarding setting. Takes 2 minutes on any phone system.</p>
+      </div>
+      <div class="step">
+        <div class="step-num">4</div>
+        <h3>Never miss a call</h3>
+        <p>Your AI answers 24/7, books reservations, and texts you a summary after every call.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="demo-section">
+  <div class="section-label">Live demo</div>
+  <h2>Call it right now. Hear it for yourself.</h2>
+  <p style="color: var(--muted); font-size: 16px; margin-top: 12px;">This is the actual AI your customers will hear. Call the number below.</p>
+  <div class="phone-card">
+    <div class="phone-display">(563) 287-1146</div>
+    <div class="phone-sub">Free to call. No commitment.</div>
+    <a href="tel:+15632871146" class="pulse-btn">
+      📞 Call the demo now
+    </a>
+  </div>
+</section>
+
+<section class="pricing">
+  <div class="pricing-inner">
+    <div class="section-label">Pricing</div>
+    <h2>Simple. No surprises.</h2>
+    <div class="price-card">
+      <div class="price-main"><span>$</span>1,000</div>
+      <div class="price-sub">one-time setup + $500/month</div>
+      <ul class="features">
+        <li>Custom AI trained on your restaurant</li>
+        <li>Reservation booking built in</li>
+        <li>Answers calls 24/7/365</li>
+        <li>Handles menu, hours, and FAQ questions</li>
+        <li>Live in 48 hours or less</li>
+        <li>Call summaries texted to you after each call</li>
+        <li>Unlimited calls included</li>
+        <li>Cancel anytime, no contracts</li>
+      </ul>
+      <a href="https://buy.stripe.com/fZu4gz175dGY5sm4fs2Ry07" class="btn-buy">Get CallDone for your restaurant →</a>
+      <p class="guarantee">Questions? Email hello@calldone.org</p>
+    </div>
+  </div>
+</section>
+
+<footer>
+  <div class="logo">Call<span>Done</span></div>
+  <p>© 2026 CallDone. All rights reserved.</p>
+</footer>
+
+</body>
+</html>

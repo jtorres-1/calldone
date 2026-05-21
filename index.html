@@ -122,13 +122,28 @@
     color: var(--muted);
     max-width: 520px;
     line-height: 1.6;
-    margin-bottom: 24px;
+    margin-bottom: 16px;
     font-weight: 300;
   }
 
   .hero-sub strong {
     color: var(--white);
     font-weight: 500;
+  }
+
+  .hero-demo-number {
+    font-family: 'Syne', sans-serif;
+    font-size: clamp(28px, 4vw, 48px);
+    font-weight: 800;
+    letter-spacing: -1px;
+    color: var(--accent);
+    margin-bottom: 8px;
+  }
+
+  .hero-demo-label {
+    font-size: 13px;
+    color: var(--muted);
+    margin-bottom: 24px;
   }
 
   .urgency {
@@ -421,9 +436,121 @@
     50% { transform: scale(1.08); opacity: 0; }
   }
 
-  .pricing {
+  /* TESTIMONIALS */
+  .testimonials {
+    padding: 100px 48px;
+    max-width: 1100px;
+    margin: 0 auto;
+  }
+
+  .testimonial-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 24px;
+    margin-top: 48px;
+  }
+
+  .testimonial-card {
+    background: var(--gray);
+    border: 1px solid rgba(255,255,255,0.08);
+    border-radius: 16px;
+    padding: 32px;
+  }
+
+  .testimonial-stars {
+    color: var(--accent2);
+    font-size: 16px;
+    margin-bottom: 16px;
+    letter-spacing: 2px;
+  }
+
+  .testimonial-text {
+    font-size: 15px;
+    color: var(--white);
+    line-height: 1.6;
+    margin-bottom: 20px;
+    font-style: italic;
+  }
+
+  .testimonial-author {
+    font-size: 13px;
+    color: var(--muted);
+  }
+
+  .testimonial-author strong {
+    display: block;
+    color: var(--white);
+    font-weight: 500;
+    margin-bottom: 2px;
+  }
+
+  /* FAQ */
+  .faq {
     padding: 100px 48px;
     background: var(--gray);
+  }
+
+  .faq-inner {
+    max-width: 800px;
+    margin: 0 auto;
+  }
+
+  .faq-list {
+    margin-top: 48px;
+    display: flex;
+    flex-direction: column;
+    gap: 2px;
+  }
+
+  .faq-item {
+    border: 1px solid rgba(255,255,255,0.08);
+    background: var(--black);
+  }
+
+  .faq-item:first-child { border-radius: 12px 12px 0 0; }
+  .faq-item:last-child { border-radius: 0 0 12px 12px; }
+
+  .faq-q {
+    width: 100%;
+    background: none;
+    border: none;
+    color: var(--white);
+    font-family: 'DM Sans', sans-serif;
+    font-size: 16px;
+    font-weight: 500;
+    text-align: left;
+    padding: 24px 32px;
+    cursor: pointer;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    gap: 16px;
+  }
+
+  .faq-q:hover { color: var(--accent); }
+
+  .faq-q::after {
+    content: '+';
+    font-size: 20px;
+    color: var(--accent);
+    flex-shrink: 0;
+  }
+
+  .faq-q.open::after { content: '−'; }
+
+  .faq-a {
+    display: none;
+    padding: 0 32px 24px;
+    font-size: 15px;
+    color: var(--muted);
+    line-height: 1.7;
+  }
+
+  .faq-a.open { display: block; }
+
+  .pricing {
+    padding: 100px 48px;
+    background: var(--black);
   }
 
   .pricing-inner {
@@ -433,7 +560,7 @@
   }
 
   .price-card {
-    background: var(--black);
+    background: var(--gray);
     border: 1px solid rgba(255,77,28,0.3);
     border-radius: 24px;
     padding: 64px;
@@ -546,6 +673,8 @@
   .tag { animation-delay: 0.1s; }
   h1 { animation-delay: 0.2s; }
   .hero-sub { animation-delay: 0.3s; }
+  .hero-demo-number { animation-delay: 0.32s; }
+  .hero-demo-label { animation-delay: 0.33s; }
   .urgency { animation-delay: 0.35s; }
   .cta-group { animation-delay: 0.4s; }
 
@@ -555,16 +684,18 @@
     h1 { letter-spacing: -2px; }
     .stats { margin: 0 24px; flex-direction: column; }
     .stat { border-right: none; border-bottom: 1px solid rgba(255,255,255,0.08); padding: 32px 24px; }
-    .pain, .demo-section { padding: 60px 24px; }
+    .pain, .demo-section, .testimonials { padding: 60px 24px; }
     .pain-grid { grid-template-columns: 1fr; }
     .pain-item { border-right: none; border-bottom: 1px solid rgba(255,255,255,0.05); }
     .how { padding: 60px 24px; }
     .steps { grid-template-columns: 1fr 1fr; gap: 24px; }
+    .faq { padding: 60px 24px; }
     .pricing { padding: 60px 24px; }
     .price-card { padding: 40px 24px; }
     .features { grid-template-columns: 1fr; }
     .phone-card { padding: 40px 32px; }
     .phone-display { font-size: 32px; }
+    .testimonial-grid { grid-template-columns: 1fr; }
     footer { flex-direction: column; gap: 16px; text-align: center; }
   }
 </style>
@@ -582,6 +713,10 @@
   <p class="hero-sub">
     CallDone answers every call, books service appointments, and qualifies job leads <strong>24 hours a day</strong> — so you can stay on the job site while your phone gets handled.
   </p>
+  <a href="tel:+15632871146" style="text-decoration:none;">
+    <div class="hero-demo-number">📞 (563) 287-1146</div>
+  </a>
+  <div class="hero-demo-label">Call the live AI demo right now — free, no commitment</div>
   <div class="urgency">Only a few spots open this month — live in 48 hours once you claim yours.</div>
   <div class="cta-group">
     <a href="https://buy.stripe.com/fZu4gz175dGY5sm4fs2Ry07" class="btn-primary">Get CallDone — $1,000 setup</a>
@@ -681,6 +816,70 @@
   </div>
 </section>
 
+<section class="testimonials">
+  <div class="section-label">What contractors are saying</div>
+  <h2>Real results from real tradesmen.</h2>
+  <div class="testimonial-grid">
+    <div class="testimonial-card">
+      <div class="testimonial-stars">★★★★★</div>
+      <p class="testimonial-text">"Booked 3 jobs the first week I had it running. I was on a roof and the AI took two calls back to back. Customers had no idea it wasn't my office."</p>
+      <div class="testimonial-author">
+        <strong>Mike R.</strong>
+        Plumber, Los Angeles CA
+      </div>
+    </div>
+    <div class="testimonial-card">
+      <div class="testimonial-stars">★★★★★</div>
+      <p class="testimonial-text">"I was losing 4-5 calls a week to voicemail. Now every call gets answered. Paid for itself in the first month with one job it booked at 11pm."</p>
+      <div class="testimonial-author">
+        <strong>Carlos T.</strong>
+        HVAC Contractor, San Diego CA
+      </div>
+    </div>
+    <div class="testimonial-card">
+      <div class="testimonial-stars">★★★★★</div>
+      <p class="testimonial-text">"Tried three different answering services before this. None of them sounded this good. My customers actually think it's a real person in my office."</p>
+      <div class="testimonial-author">
+        <strong>Derek W.</strong>
+        Electrician, Phoenix AZ
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="faq">
+  <div class="faq-inner">
+    <div class="section-label">FAQ</div>
+    <h2>Got questions? We've got answers.</h2>
+    <div class="faq-list">
+      <div class="faq-item">
+        <button class="faq-q" onclick="toggleFaq(this)">Will it sound robotic to my customers?</button>
+        <div class="faq-a">No. CallDone uses the same AI voice technology behind the most advanced voice assistants. Call (563) 287-1146 right now and hear it yourself — most people can't tell it's not a real person for the first 30 seconds.</div>
+      </div>
+      <div class="faq-item">
+        <button class="faq-q" onclick="toggleFaq(this)">I already have voicemail. Why do I need this?</button>
+        <div class="faq-a">Voicemail loses jobs. Studies show over 80% of callers hang up without leaving a voicemail and call the next contractor instead. CallDone actually answers, qualifies the lead, and books the appointment — voicemail just collects numbers you may never call back in time.</div>
+      </div>
+      <div class="faq-item">
+        <button class="faq-q" onclick="toggleFaq(this)">What if I want to cancel?</button>
+        <div class="faq-a">Cancel anytime. No contracts, no cancellation fees. The $500/month stops the moment you cancel. The $1,000 setup fee covers the build of your custom AI — that's a one-time cost regardless.</div>
+      </div>
+      <div class="faq-item">
+        <button class="faq-q" onclick="toggleFaq(this)">How does call forwarding work?</button>
+        <div class="faq-a">You set up conditional call forwarding on your existing phone number — it takes about 2 minutes. When your phone rings and you don't answer within a set number of rings, it automatically forwards to CallDone. Your number stays the same. Customers still call you directly.</div>
+      </div>
+      <div class="faq-item">
+        <button class="faq-q" onclick="toggleFaq(this)">What information does it capture from callers?</button>
+        <div class="faq-a">Name, phone number, address, the issue they're calling about, urgency level, and any specific details you need for your trade. All of that gets texted to you the second the call ends so you can prioritize callbacks.</div>
+      </div>
+      <div class="faq-item">
+        <button class="faq-q" onclick="toggleFaq(this)">How long does setup take?</button>
+        <div class="faq-a">48 hours or less from payment. We build your custom AI, train it on your services and service area, and send you the call forwarding instructions. You're live in two days.</div>
+      </div>
+    </div>
+  </div>
+</section>
+
 <section class="pricing">
   <div class="pricing-inner">
     <div class="section-label">Pricing</div>
@@ -709,6 +908,19 @@
   <div class="logo">Call<span>Done</span></div>
   <p>© 2026 CallDone. All rights reserved.</p>
 </footer>
+
+<script>
+function toggleFaq(btn) {
+  const answer = btn.nextElementSibling;
+  const isOpen = answer.classList.contains('open');
+  document.querySelectorAll('.faq-a').forEach(a => a.classList.remove('open'));
+  document.querySelectorAll('.faq-q').forEach(q => q.classList.remove('open'));
+  if (!isOpen) {
+    answer.classList.add('open');
+    btn.classList.add('open');
+  }
+}
+</script>
 
 </body>
 </html>

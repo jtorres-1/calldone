@@ -617,7 +617,7 @@
 <body>
 <nav>
   <div class="logo">Call<span>Done</span></div>
-  <a href="https://buy.stripe.com/fZu4gz175dGY5sm4fs2Ry07">Get Started — $1,000</a>
+  <a href="https://buy.stripe.com/fZu4gz175dGY5sm4fs2Ry07" onclick="trackPurchaseClick()">Get Started — $1,000</a>
 </nav>
 <section class="hero">
   <div class="tag">AI Receptionist for Contractors</div>
@@ -631,7 +631,7 @@
   <div class="hero-demo-label">Call the live AI demo right now — free, no commitment</div>
   <div class="urgency">Only a few spots open this month — live in 48 hours once you claim yours.</div>
   <div class="cta-group">
-    <a href="https://buy.stripe.com/fZu4gz175dGY5sm4fs2Ry07" class="btn-primary">Get CallDone — $1,000 setup</a>
+    <a href="https://buy.stripe.com/fZu4gz175dGY5sm4fs2Ry07" class="btn-primary" onclick="trackPurchaseClick()">Get CallDone — $1,000 setup</a>
     <a href="tel:+15632871146" class="demo-link">
       <div class="demo-icon">📞</div>
       Hear the AI live
@@ -804,7 +804,7 @@
         <li>Works on any cell or office phone</li>
         <li>Cancel anytime, no contracts</li>
       </ul>
-      <a href="https://buy.stripe.com/fZu4gz175dGY5sm4fs2Ry07" class="btn-buy">Get CallDone for your business →</a>
+      <a href="https://buy.stripe.com/fZu4gz175dGY5sm4fs2Ry07" class="btn-buy" onclick="trackPurchaseClick()">Get CallDone for your business →</a>
     </div>
   </div>
 </section>
@@ -822,6 +822,14 @@ function toggleFaq(btn) {
     answer.classList.add('open');
     btn.classList.add('open');
   }
+}
+
+function trackPurchaseClick() {
+  gtag('event', 'conversion', {
+    'send_to': 'AW-18178769860/JuFbCIil87AcEMSHqNxD',
+    'value': 1000.0,
+    'currency': 'USD'
+  });
 }
 </script>
 </body>

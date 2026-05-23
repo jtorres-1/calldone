@@ -1,6 +1,14 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
+<!-- Google tag (gtag.js) -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=AW-18178769860"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+  gtag('config', 'AW-18178769860');
+</script>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>CallDone — Your Phone Never Goes Unanswered Again</title>
@@ -14,16 +22,13 @@
     --gray: #1a1a1a;
     --muted: #888;
   }
-
   * { margin: 0; padding: 0; box-sizing: border-box; }
-
   body {
     background: var(--black);
     color: var(--white);
     font-family: 'DM Sans', sans-serif;
     overflow-x: hidden;
   }
-
   nav {
     display: flex;
     justify-content: space-between;
@@ -36,16 +41,13 @@
     backdrop-filter: blur(12px);
     border-bottom: 1px solid rgba(255,255,255,0.06);
   }
-
   .logo {
     font-family: 'Syne', sans-serif;
     font-weight: 800;
     font-size: 22px;
     letter-spacing: -0.5px;
   }
-
   .logo span { color: var(--accent); }
-
   nav a {
     color: var(--white);
     text-decoration: none;
@@ -56,9 +58,7 @@
     border-radius: 100px;
     transition: opacity 0.2s;
   }
-
   nav a:hover { opacity: 0.85; }
-
   .hero {
     min-height: 100vh;
     display: flex;
@@ -68,7 +68,6 @@
     position: relative;
     overflow: hidden;
   }
-
   .hero::before {
     content: '';
     position: absolute;
@@ -77,7 +76,6 @@
     background: radial-gradient(circle, rgba(255,77,28,0.15) 0%, transparent 70%);
     pointer-events: none;
   }
-
   .hero::after {
     content: '';
     position: absolute;
@@ -86,7 +84,6 @@
     background: radial-gradient(circle, rgba(255,179,71,0.08) 0%, transparent 70%);
     pointer-events: none;
   }
-
   .tag {
     display: inline-block;
     font-size: 12px;
@@ -100,7 +97,6 @@
     margin-bottom: 32px;
     width: fit-content;
   }
-
   h1 {
     font-family: 'Syne', sans-serif;
     font-size: clamp(48px, 7vw, 96px);
@@ -110,13 +106,11 @@
     max-width: 900px;
     margin-bottom: 32px;
   }
-
   h1 em {
     font-style: normal;
     color: var(--accent);
     position: relative;
   }
-
   .hero-sub {
     font-size: 18px;
     color: var(--muted);
@@ -125,12 +119,10 @@
     margin-bottom: 16px;
     font-weight: 300;
   }
-
   .hero-sub strong {
     color: var(--white);
     font-weight: 500;
   }
-
   .hero-demo-number {
     font-family: 'Syne', sans-serif;
     font-size: clamp(28px, 4vw, 48px);
@@ -139,13 +131,11 @@
     color: var(--accent);
     margin-bottom: 8px;
   }
-
   .hero-demo-label {
     font-size: 13px;
     color: var(--muted);
     margin-bottom: 24px;
   }
-
   .urgency {
     display: inline-flex;
     align-items: center;
@@ -155,7 +145,6 @@
     margin-bottom: 32px;
     font-weight: 500;
   }
-
   .urgency::before {
     content: '';
     width: 8px;
@@ -165,19 +154,16 @@
     animation: blink 1.5s ease-in-out infinite;
     flex-shrink: 0;
   }
-
   @keyframes blink {
     0%, 100% { opacity: 1; }
     50% { opacity: 0.2; }
   }
-
   .cta-group {
     display: flex;
     gap: 16px;
     align-items: center;
     flex-wrap: wrap;
   }
-
   .btn-primary {
     display: inline-block;
     background: var(--accent);
@@ -191,12 +177,10 @@
     transition: transform 0.2s, box-shadow 0.2s;
     box-shadow: 0 0 40px rgba(255,77,28,0.3);
   }
-
   .btn-primary:hover {
     transform: translateY(-2px);
     box-shadow: 0 0 60px rgba(255,77,28,0.5);
   }
-
   .demo-link {
     display: flex;
     align-items: center;
@@ -210,9 +194,7 @@
     border-radius: 100px;
     transition: border-color 0.2s;
   }
-
   .demo-link:hover { border-color: rgba(255,255,255,0.4); }
-
   .demo-icon {
     width: 32px; height: 32px;
     background: rgba(255,77,28,0.15);
@@ -222,7 +204,6 @@
     justify-content: center;
     font-size: 14px;
   }
-
   .stats {
     display: flex;
     gap: 0;
@@ -230,15 +211,12 @@
     border-bottom: 1px solid rgba(255,255,255,0.08);
     margin: 0 48px;
   }
-
   .stat {
     flex: 1;
     padding: 40px 32px;
     border-right: 1px solid rgba(255,255,255,0.08);
   }
-
   .stat:last-child { border-right: none; }
-
   .stat-num {
     font-family: 'Syne', sans-serif;
     font-size: 48px;
@@ -248,19 +226,16 @@
     line-height: 1;
     margin-bottom: 8px;
   }
-
   .stat-label {
     font-size: 13px;
     color: var(--muted);
     line-height: 1.4;
   }
-
   .pain {
     padding: 100px 48px;
     max-width: 1100px;
     margin: 0 auto;
   }
-
   .section-label {
     font-size: 11px;
     letter-spacing: 3px;
@@ -268,7 +243,6 @@
     color: var(--muted);
     margin-bottom: 24px;
   }
-
   h2 {
     font-family: 'Syne', sans-serif;
     font-size: clamp(32px, 4vw, 52px);
@@ -277,7 +251,6 @@
     line-height: 1.1;
     margin-bottom: 48px;
   }
-
   .pain-grid {
     display: grid;
     grid-template-columns: repeat(3, 1fr);
@@ -285,15 +258,12 @@
     background: rgba(255,255,255,0.05);
     border: 1px solid rgba(255,255,255,0.08);
   }
-
   .pain-item {
     background: var(--black);
     padding: 40px 32px;
     border-right: 1px solid rgba(255,255,255,0.05);
   }
-
   .pain-item:last-child { border-right: none; }
-
   .pain-num {
     font-family: 'Syne', sans-serif;
     font-size: 56px;
@@ -303,13 +273,11 @@
     line-height: 1;
     margin-bottom: 12px;
   }
-
   .pain-text {
     font-size: 15px;
     color: var(--muted);
     line-height: 1.6;
   }
-
   .pain-text strong {
     display: block;
     color: var(--white);
@@ -317,26 +285,21 @@
     font-weight: 500;
     margin-bottom: 8px;
   }
-
   .how {
     padding: 100px 48px;
     background: var(--gray);
   }
-
   .how-inner {
     max-width: 1100px;
     margin: 0 auto;
   }
-
   .steps {
     display: grid;
     grid-template-columns: repeat(4, 1fr);
     gap: 32px;
     margin-top: 48px;
   }
-
   .step { position: relative; }
-
   .step-num {
     width: 40px; height: 40px;
     border: 1px solid rgba(255,77,28,0.4);
@@ -350,7 +313,6 @@
     color: var(--accent);
     margin-bottom: 20px;
   }
-
   .step h3 {
     font-family: 'Syne', sans-serif;
     font-size: 18px;
@@ -358,20 +320,17 @@
     margin-bottom: 10px;
     letter-spacing: -0.3px;
   }
-
   .step p {
     font-size: 14px;
     color: var(--muted);
     line-height: 1.6;
   }
-
   .demo-section {
     padding: 100px 48px;
     max-width: 1100px;
     margin: 0 auto;
     text-align: center;
   }
-
   .phone-card {
     display: inline-block;
     background: var(--gray);
@@ -381,7 +340,6 @@
     margin-top: 48px;
     position: relative;
   }
-
   .phone-card::before {
     content: '';
     position: absolute;
@@ -390,7 +348,6 @@
     background: linear-gradient(135deg, rgba(255,77,28,0.3), transparent, rgba(255,179,71,0.15));
     z-index: -1;
   }
-
   .phone-display {
     font-family: 'Syne', sans-serif;
     font-size: 48px;
@@ -399,13 +356,11 @@
     color: var(--white);
     margin-bottom: 12px;
   }
-
   .phone-sub {
     font-size: 14px;
     color: var(--muted);
     margin-bottom: 32px;
   }
-
   .pulse-btn {
     display: inline-flex;
     align-items: center;
@@ -420,7 +375,6 @@
     border-radius: 100px;
     position: relative;
   }
-
   .pulse-btn::before {
     content: '';
     position: absolute;
@@ -430,40 +384,33 @@
     opacity: 0.3;
     animation: pulse 2s ease-in-out infinite;
   }
-
   @keyframes pulse {
     0%, 100% { transform: scale(1); opacity: 0.3; }
     50% { transform: scale(1.08); opacity: 0; }
   }
-
-  /* TESTIMONIALS */
   .testimonials {
     padding: 100px 48px;
     max-width: 1100px;
     margin: 0 auto;
   }
-
   .testimonial-grid {
     display: grid;
     grid-template-columns: repeat(3, 1fr);
     gap: 24px;
     margin-top: 48px;
   }
-
   .testimonial-card {
     background: var(--gray);
     border: 1px solid rgba(255,255,255,0.08);
     border-radius: 16px;
     padding: 32px;
   }
-
   .testimonial-stars {
     color: var(--accent2);
     font-size: 16px;
     margin-bottom: 16px;
     letter-spacing: 2px;
   }
-
   .testimonial-text {
     font-size: 15px;
     color: var(--white);
@@ -471,45 +418,36 @@
     margin-bottom: 20px;
     font-style: italic;
   }
-
   .testimonial-author {
     font-size: 13px;
     color: var(--muted);
   }
-
   .testimonial-author strong {
     display: block;
     color: var(--white);
     font-weight: 500;
     margin-bottom: 2px;
   }
-
-  /* FAQ */
   .faq {
     padding: 100px 48px;
     background: var(--gray);
   }
-
   .faq-inner {
     max-width: 800px;
     margin: 0 auto;
   }
-
   .faq-list {
     margin-top: 48px;
     display: flex;
     flex-direction: column;
     gap: 2px;
   }
-
   .faq-item {
     border: 1px solid rgba(255,255,255,0.08);
     background: var(--black);
   }
-
   .faq-item:first-child { border-radius: 12px 12px 0 0; }
   .faq-item:last-child { border-radius: 0 0 12px 12px; }
-
   .faq-q {
     width: 100%;
     background: none;
@@ -526,18 +464,14 @@
     align-items: center;
     gap: 16px;
   }
-
   .faq-q:hover { color: var(--accent); }
-
   .faq-q::after {
     content: '+';
     font-size: 20px;
     color: var(--accent);
     flex-shrink: 0;
   }
-
   .faq-q.open::after { content: '−'; }
-
   .faq-a {
     display: none;
     padding: 0 32px 24px;
@@ -545,20 +479,16 @@
     color: var(--muted);
     line-height: 1.7;
   }
-
   .faq-a.open { display: block; }
-
   .pricing {
     padding: 100px 48px;
     background: var(--black);
   }
-
   .pricing-inner {
     max-width: 800px;
     margin: 0 auto;
     text-align: center;
   }
-
   .price-card {
     background: var(--gray);
     border: 1px solid rgba(255,77,28,0.3);
@@ -568,7 +498,6 @@
     position: relative;
     overflow: hidden;
   }
-
   .price-card::before {
     content: '';
     position: absolute;
@@ -576,7 +505,6 @@
     height: 2px;
     background: linear-gradient(90deg, var(--accent), var(--accent2));
   }
-
   .price-main {
     font-family: 'Syne', sans-serif;
     font-size: 80px;
@@ -585,7 +513,6 @@
     line-height: 1;
     margin-bottom: 8px;
   }
-
   .price-main span {
     font-size: 32px;
     letter-spacing: -1px;
@@ -593,13 +520,11 @@
     margin-top: 16px;
     display: inline-block;
   }
-
   .price-sub {
     color: var(--muted);
     font-size: 14px;
     margin-bottom: 40px;
   }
-
   .features {
     list-style: none;
     text-align: left;
@@ -608,7 +533,6 @@
     grid-template-columns: 1fr 1fr;
     gap: 16px;
   }
-
   .features li {
     display: flex;
     align-items: flex-start;
@@ -617,14 +541,12 @@
     color: var(--muted);
     line-height: 1.5;
   }
-
   .features li::before {
     content: '→';
     color: var(--accent);
     flex-shrink: 0;
     font-weight: 700;
   }
-
   .btn-buy {
     display: block;
     background: var(--accent);
@@ -639,12 +561,10 @@
     transition: transform 0.2s, box-shadow 0.2s;
     box-shadow: 0 0 40px rgba(255,77,28,0.3);
   }
-
   .btn-buy:hover {
     transform: translateY(-2px);
     box-shadow: 0 0 60px rgba(255,77,28,0.5);
   }
-
   footer {
     padding: 40px 48px;
     border-top: 1px solid rgba(255,255,255,0.08);
@@ -652,24 +572,19 @@
     justify-content: space-between;
     align-items: center;
   }
-
   footer .logo { font-size: 18px; }
-
   footer p {
     font-size: 13px;
     color: var(--muted);
   }
-
   @keyframes fadeUp {
     from { opacity: 0; transform: translateY(30px); }
     to { opacity: 1; transform: translateY(0); }
   }
-
   .hero > * {
     animation: fadeUp 0.8s ease forwards;
     opacity: 0;
   }
-
   .tag { animation-delay: 0.1s; }
   h1 { animation-delay: 0.2s; }
   .hero-sub { animation-delay: 0.3s; }
@@ -677,7 +592,6 @@
   .hero-demo-label { animation-delay: 0.33s; }
   .urgency { animation-delay: 0.35s; }
   .cta-group { animation-delay: 0.4s; }
-
   @media (max-width: 768px) {
     nav { padding: 20px 24px; }
     .hero { padding: 100px 24px 60px; }
@@ -701,12 +615,10 @@
 </style>
 </head>
 <body>
-
 <nav>
   <div class="logo">Call<span>Done</span></div>
   <a href="https://buy.stripe.com/fZu4gz175dGY5sm4fs2Ry07">Get Started — $1,000</a>
 </nav>
-
 <section class="hero">
   <div class="tag">AI Receptionist for Contractors</div>
   <h1>Stop losing jobs to <em>missed</em> calls.</h1>
@@ -726,7 +638,6 @@
     </a>
   </div>
 </section>
-
 <div class="stats">
   <div class="stat">
     <div class="stat-num">$400</div>
@@ -745,7 +656,6 @@
     <div class="stat-label">from payment to<br>your AI going live</div>
   </div>
 </div>
-
 <section class="pain">
   <div class="section-label">The problem</div>
   <h2>Every missed call is a job your competitor just took.</h2>
@@ -773,7 +683,6 @@
     </div>
   </div>
 </section>
-
 <section class="how">
   <div class="how-inner">
     <div class="section-label">How it works</div>
@@ -802,7 +711,6 @@
     </div>
   </div>
 </section>
-
 <section class="demo-section">
   <div class="section-label">Live demo</div>
   <h2>Call it right now. Hear it for yourself.</h2>
@@ -815,7 +723,6 @@
     </a>
   </div>
 </section>
-
 <section class="testimonials">
   <div class="section-label">What contractors are saying</div>
   <h2>Real results from real tradesmen.</h2>
@@ -846,7 +753,6 @@
     </div>
   </div>
 </section>
-
 <section class="faq">
   <div class="faq-inner">
     <div class="section-label">FAQ</div>
@@ -879,7 +785,6 @@
     </div>
   </div>
 </section>
-
 <section class="pricing">
   <div class="pricing-inner">
     <div class="section-label">Pricing</div>
@@ -903,12 +808,10 @@
     </div>
   </div>
 </section>
-
 <footer>
   <div class="logo">Call<span>Done</span></div>
   <p>© 2026 CallDone. All rights reserved.</p>
 </footer>
-
 <script>
 function toggleFaq(btn) {
   const answer = btn.nextElementSibling;
@@ -921,6 +824,5 @@ function toggleFaq(btn) {
   }
 }
 </script>
-
 </body>
 </html>

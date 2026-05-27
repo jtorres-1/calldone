@@ -12,129 +12,187 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>CallDone — Your Phone Never Goes Unanswered Again</title>
-<link href="https://fonts.googleapis.com/css2?family=Syne:wght@400;600;700;800&family=DM+Sans:wght@300;400;500&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Barlow+Condensed:wght@400;600;700;800;900&family=Barlow:wght@300;400;500;600&display=swap" rel="stylesheet">
 <style>
   :root {
-    --black: #0a0a0a;
-    --white: #f5f2ed;
+    --black: #0d0d0d;
+    --white: #f0ede8;
     --accent: #ff4d1c;
     --accent2: #ffb347;
-    --gray: #1a1a1a;
-    --muted: #888;
+    --gray: #181818;
+    --muted: #777;
+    --blue: #1a3a5c;
   }
   * { margin: 0; padding: 0; box-sizing: border-box; }
   body {
     background: var(--black);
     color: var(--white);
-    font-family: 'DM Sans', sans-serif;
+    font-family: 'Barlow', sans-serif;
     overflow-x: hidden;
   }
+
+  /* NAV */
   nav {
     display: flex;
     justify-content: space-between;
     align-items: center;
-    padding: 24px 48px;
+    padding: 20px 48px;
     position: fixed;
     top: 0; left: 0; right: 0;
     z-index: 100;
-    background: rgba(10,10,10,0.85);
+    background: rgba(13,13,13,0.95);
     backdrop-filter: blur(12px);
     border-bottom: 1px solid rgba(255,255,255,0.06);
   }
   .logo {
-    font-family: 'Syne', sans-serif;
-    font-weight: 800;
-    font-size: 22px;
-    letter-spacing: -0.5px;
+    font-family: 'Barlow Condensed', sans-serif;
+    font-weight: 900;
+    font-size: 26px;
+    letter-spacing: 1px;
+    text-transform: uppercase;
   }
   .logo span { color: var(--accent); }
+  .nav-right {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-end;
+    gap: 4px;
+  }
+  .nav-discount {
+    font-size: 11px;
+    color: var(--accent2);
+    font-weight: 600;
+    letter-spacing: 1px;
+    text-transform: uppercase;
+  }
+  .nav-discount s {
+    color: var(--muted);
+    margin-right: 4px;
+  }
   nav a {
     color: var(--white);
     text-decoration: none;
-    font-size: 14px;
-    font-weight: 500;
-    padding: 10px 24px;
+    font-family: 'Barlow Condensed', sans-serif;
+    font-weight: 700;
+    font-size: 16px;
+    letter-spacing: 1px;
+    text-transform: uppercase;
+    padding: 10px 28px;
     background: var(--accent);
-    border-radius: 100px;
+    border-radius: 4px;
     transition: opacity 0.2s;
   }
   nav a:hover { opacity: 0.85; }
+
+  /* HERO */
   .hero {
     min-height: 100vh;
     display: flex;
     flex-direction: column;
     justify-content: center;
-    padding: 120px 48px 80px;
+    padding: 140px 48px 80px;
     position: relative;
     overflow: hidden;
+    background: linear-gradient(135deg, #0d0d0d 60%, #1a1008 100%);
   }
   .hero::before {
     content: '';
     position: absolute;
     top: -200px; right: -200px;
-    width: 600px; height: 600px;
-    background: radial-gradient(circle, rgba(255,77,28,0.15) 0%, transparent 70%);
-    pointer-events: none;
-  }
-  .hero::after {
-    content: '';
-    position: absolute;
-    bottom: -100px; left: -100px;
-    width: 400px; height: 400px;
-    background: radial-gradient(circle, rgba(255,179,71,0.08) 0%, transparent 70%);
+    width: 700px; height: 700px;
+    background: radial-gradient(circle, rgba(255,77,28,0.12) 0%, transparent 70%);
     pointer-events: none;
   }
   .tag {
-    display: inline-block;
-    font-size: 12px;
-    font-weight: 500;
-    letter-spacing: 2px;
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    font-family: 'Barlow Condensed', sans-serif;
+    font-size: 13px;
+    font-weight: 700;
+    letter-spacing: 3px;
     text-transform: uppercase;
     color: var(--accent);
-    border: 1px solid rgba(255,77,28,0.3);
-    padding: 6px 16px;
-    border-radius: 100px;
-    margin-bottom: 32px;
+    border: 1px solid rgba(255,77,28,0.4);
+    padding: 8px 18px;
+    border-radius: 3px;
+    margin-bottom: 28px;
     width: fit-content;
   }
   h1 {
-    font-family: 'Syne', sans-serif;
-    font-size: clamp(48px, 7vw, 96px);
-    font-weight: 800;
-    line-height: 0.95;
-    letter-spacing: -3px;
+    font-family: 'Barlow Condensed', sans-serif;
+    font-size: clamp(56px, 8vw, 110px);
+    font-weight: 900;
+    line-height: 0.92;
+    letter-spacing: -1px;
+    text-transform: uppercase;
     max-width: 900px;
-    margin-bottom: 32px;
+    margin-bottom: 28px;
   }
   h1 em {
     font-style: normal;
     color: var(--accent);
-    position: relative;
   }
   .hero-sub {
-    font-size: 18px;
+    font-size: 19px;
     color: var(--muted);
-    max-width: 520px;
+    max-width: 540px;
     line-height: 1.6;
-    margin-bottom: 16px;
-    font-weight: 300;
+    margin-bottom: 20px;
+    font-weight: 400;
   }
-  .hero-sub strong {
+  .hero-sub strong { color: var(--white); font-weight: 600; }
+
+  /* HERO DISCOUNT BANNER */
+  .hero-discount-bar {
+    display: inline-flex;
+    align-items: center;
+    gap: 16px;
+    background: rgba(255,77,28,0.12);
+    border: 1px solid rgba(255,77,28,0.3);
+    border-radius: 4px;
+    padding: 12px 20px;
+    margin-bottom: 20px;
+    width: fit-content;
+  }
+  .hero-discount-bar .badge {
+    background: var(--accent);
+    color: #fff;
+    font-family: 'Barlow Condensed', sans-serif;
+    font-weight: 800;
+    font-size: 14px;
+    letter-spacing: 2px;
+    text-transform: uppercase;
+    padding: 4px 10px;
+    border-radius: 3px;
+  }
+  .hero-discount-bar .text {
+    font-size: 15px;
     color: var(--white);
     font-weight: 500;
   }
+  .hero-discount-bar .text s {
+    color: var(--muted);
+    margin-right: 6px;
+  }
+  .hero-discount-bar .text strong {
+    color: var(--accent2);
+  }
+
   .hero-demo-number {
-    font-family: 'Syne', sans-serif;
-    font-size: clamp(28px, 4vw, 48px);
+    font-family: 'Barlow Condensed', sans-serif;
+    font-size: clamp(32px, 4vw, 52px);
     font-weight: 800;
-    letter-spacing: -1px;
+    letter-spacing: 1px;
     color: var(--accent);
-    margin-bottom: 8px;
+    margin-bottom: 6px;
+    text-transform: uppercase;
   }
   .hero-demo-label {
     font-size: 13px;
     color: var(--muted);
     margin-bottom: 24px;
+    letter-spacing: 0.5px;
   }
   .urgency {
     display: inline-flex;
@@ -143,12 +201,13 @@
     font-size: 13px;
     color: var(--accent2);
     margin-bottom: 32px;
-    font-weight: 500;
+    font-weight: 600;
+    letter-spacing: 0.5px;
+    text-transform: uppercase;
   }
   .urgency::before {
     content: '';
-    width: 8px;
-    height: 8px;
+    width: 8px; height: 8px;
     background: var(--accent2);
     border-radius: 50%;
     animation: blink 1.5s ease-in-out infinite;
@@ -165,18 +224,30 @@
     flex-wrap: wrap;
   }
   .btn-primary {
-    display: inline-block;
+    display: inline-flex;
+    flex-direction: column;
+    align-items: center;
     background: var(--accent);
     color: #fff;
     text-decoration: none;
-    font-family: 'Syne', sans-serif;
-    font-weight: 700;
-    font-size: 16px;
-    padding: 18px 40px;
-    border-radius: 100px;
+    font-family: 'Barlow Condensed', sans-serif;
+    font-weight: 800;
+    font-size: 18px;
+    letter-spacing: 1px;
+    text-transform: uppercase;
+    padding: 16px 40px;
+    border-radius: 4px;
     transition: transform 0.2s, box-shadow 0.2s;
     box-shadow: 0 0 40px rgba(255,77,28,0.3);
+    gap: 2px;
   }
+  .btn-primary .btn-sub {
+    font-size: 11px;
+    font-weight: 600;
+    opacity: 0.85;
+    letter-spacing: 1px;
+  }
+  .btn-primary .btn-sub s { opacity: 0.6; margin-right: 4px; }
   .btn-primary:hover {
     transform: translateY(-2px);
     box-shadow: 0 0 60px rgba(255,77,28,0.5);
@@ -187,26 +258,21 @@
     gap: 10px;
     color: var(--white);
     text-decoration: none;
-    font-size: 15px;
-    font-weight: 500;
-    padding: 18px 32px;
-    border: 1px solid rgba(255,255,255,0.15);
-    border-radius: 100px;
+    font-family: 'Barlow Condensed', sans-serif;
+    font-weight: 700;
+    font-size: 16px;
+    letter-spacing: 1px;
+    text-transform: uppercase;
+    padding: 16px 32px;
+    border: 2px solid rgba(255,255,255,0.2);
+    border-radius: 4px;
     transition: border-color 0.2s;
   }
-  .demo-link:hover { border-color: rgba(255,255,255,0.4); }
-  .demo-icon {
-    width: 32px; height: 32px;
-    background: rgba(255,77,28,0.15);
-    border-radius: 50%;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    font-size: 14px;
-  }
+  .demo-link:hover { border-color: rgba(255,255,255,0.5); }
+
+  /* STATS */
   .stats {
     display: flex;
-    gap: 0;
     border-top: 1px solid rgba(255,255,255,0.08);
     border-bottom: 1px solid rgba(255,255,255,0.08);
     margin: 0 48px;
@@ -218,38 +284,45 @@
   }
   .stat:last-child { border-right: none; }
   .stat-num {
-    font-family: 'Syne', sans-serif;
-    font-size: 48px;
-    font-weight: 800;
-    letter-spacing: -2px;
+    font-family: 'Barlow Condensed', sans-serif;
+    font-size: 52px;
+    font-weight: 900;
     color: var(--accent);
     line-height: 1;
     margin-bottom: 8px;
+    letter-spacing: -1px;
   }
   .stat-label {
     font-size: 13px;
     color: var(--muted);
     line-height: 1.4;
+    font-weight: 500;
   }
+
+  /* SECTIONS */
+  .section-label {
+    font-family: 'Barlow Condensed', sans-serif;
+    font-size: 12px;
+    letter-spacing: 4px;
+    text-transform: uppercase;
+    color: var(--muted);
+    margin-bottom: 16px;
+  }
+  h2 {
+    font-family: 'Barlow Condensed', sans-serif;
+    font-size: clamp(36px, 4vw, 56px);
+    font-weight: 900;
+    letter-spacing: -0.5px;
+    text-transform: uppercase;
+    line-height: 1.05;
+    margin-bottom: 48px;
+  }
+
+  /* PAIN */
   .pain {
     padding: 100px 48px;
     max-width: 1100px;
     margin: 0 auto;
-  }
-  .section-label {
-    font-size: 11px;
-    letter-spacing: 3px;
-    text-transform: uppercase;
-    color: var(--muted);
-    margin-bottom: 24px;
-  }
-  h2 {
-    font-family: 'Syne', sans-serif;
-    font-size: clamp(32px, 4vw, 52px);
-    font-weight: 700;
-    letter-spacing: -1.5px;
-    line-height: 1.1;
-    margin-bottom: 48px;
   }
   .pain-grid {
     display: grid;
@@ -265,66 +338,55 @@
   }
   .pain-item:last-child { border-right: none; }
   .pain-num {
-    font-family: 'Syne', sans-serif;
-    font-size: 56px;
-    font-weight: 800;
-    letter-spacing: -2px;
-    opacity: 0.1;
+    font-family: 'Barlow Condensed', sans-serif;
+    font-size: 64px;
+    font-weight: 900;
+    opacity: 0.08;
     line-height: 1;
     margin-bottom: 12px;
   }
-  .pain-text {
-    font-size: 15px;
-    color: var(--muted);
-    line-height: 1.6;
-  }
+  .pain-text { font-size: 15px; color: var(--muted); line-height: 1.6; }
   .pain-text strong {
     display: block;
     color: var(--white);
     font-size: 18px;
-    font-weight: 500;
+    font-weight: 600;
     margin-bottom: 8px;
   }
-  .how {
-    padding: 100px 48px;
-    background: var(--gray);
-  }
-  .how-inner {
-    max-width: 1100px;
-    margin: 0 auto;
-  }
+
+  /* HOW */
+  .how { padding: 100px 48px; background: var(--gray); }
+  .how-inner { max-width: 1100px; margin: 0 auto; }
   .steps {
     display: grid;
     grid-template-columns: repeat(4, 1fr);
     gap: 32px;
     margin-top: 48px;
   }
-  .step { position: relative; }
   .step-num {
-    width: 40px; height: 40px;
-    border: 1px solid rgba(255,77,28,0.4);
-    border-radius: 50%;
+    width: 44px; height: 44px;
+    border: 2px solid var(--accent);
+    border-radius: 3px;
     display: flex;
     align-items: center;
     justify-content: center;
-    font-family: 'Syne', sans-serif;
-    font-size: 14px;
-    font-weight: 700;
+    font-family: 'Barlow Condensed', sans-serif;
+    font-size: 18px;
+    font-weight: 900;
     color: var(--accent);
     margin-bottom: 20px;
   }
   .step h3 {
-    font-family: 'Syne', sans-serif;
-    font-size: 18px;
-    font-weight: 700;
+    font-family: 'Barlow Condensed', sans-serif;
+    font-size: 20px;
+    font-weight: 800;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
     margin-bottom: 10px;
-    letter-spacing: -0.3px;
   }
-  .step p {
-    font-size: 14px;
-    color: var(--muted);
-    line-height: 1.6;
-  }
+  .step p { font-size: 15px; color: var(--muted); line-height: 1.6; }
+
+  /* DEMO */
   .demo-section {
     padding: 100px 48px;
     max-width: 1100px;
@@ -335,7 +397,7 @@
     display: inline-block;
     background: var(--gray);
     border: 1px solid rgba(255,255,255,0.1);
-    border-radius: 24px;
+    border-radius: 8px;
     padding: 48px 64px;
     margin-top: 48px;
     position: relative;
@@ -343,24 +405,20 @@
   .phone-card::before {
     content: '';
     position: absolute;
-    inset: -1px;
-    border-radius: 24px;
-    background: linear-gradient(135deg, rgba(255,77,28,0.3), transparent, rgba(255,179,71,0.15));
-    z-index: -1;
+    top: 0; left: 0; right: 0;
+    height: 3px;
+    background: linear-gradient(90deg, var(--accent), var(--accent2));
+    border-radius: 8px 8px 0 0;
   }
   .phone-display {
-    font-family: 'Syne', sans-serif;
-    font-size: 48px;
-    font-weight: 800;
-    letter-spacing: -1px;
+    font-family: 'Barlow Condensed', sans-serif;
+    font-size: 56px;
+    font-weight: 900;
+    letter-spacing: 2px;
     color: var(--white);
     margin-bottom: 12px;
   }
-  .phone-sub {
-    font-size: 14px;
-    color: var(--muted);
-    margin-bottom: 32px;
-  }
+  .phone-sub { font-size: 14px; color: var(--muted); margin-bottom: 32px; }
   .pulse-btn {
     display: inline-flex;
     align-items: center;
@@ -368,31 +426,31 @@
     background: var(--accent);
     color: #fff;
     text-decoration: none;
-    font-family: 'Syne', sans-serif;
-    font-weight: 700;
-    font-size: 15px;
-    padding: 16px 32px;
-    border-radius: 100px;
+    font-family: 'Barlow Condensed', sans-serif;
+    font-weight: 800;
+    font-size: 18px;
+    letter-spacing: 1px;
+    text-transform: uppercase;
+    padding: 16px 40px;
+    border-radius: 4px;
     position: relative;
   }
   .pulse-btn::before {
     content: '';
     position: absolute;
     inset: -4px;
-    border-radius: 100px;
+    border-radius: 8px;
     background: var(--accent);
     opacity: 0.3;
     animation: pulse 2s ease-in-out infinite;
   }
   @keyframes pulse {
     0%, 100% { transform: scale(1); opacity: 0.3; }
-    50% { transform: scale(1.08); opacity: 0; }
+    50% { transform: scale(1.06); opacity: 0; }
   }
-  .testimonials {
-    padding: 100px 48px;
-    max-width: 1100px;
-    margin: 0 auto;
-  }
+
+  /* TESTIMONIALS */
+  .testimonials { padding: 100px 48px; max-width: 1100px; margin: 0 auto; }
   .testimonial-grid {
     display: grid;
     grid-template-columns: repeat(3, 1fr);
@@ -402,60 +460,30 @@
   .testimonial-card {
     background: var(--gray);
     border: 1px solid rgba(255,255,255,0.08);
-    border-radius: 16px;
+    border-radius: 8px;
     padding: 32px;
+    border-top: 3px solid var(--accent);
   }
-  .testimonial-stars {
-    color: var(--accent2);
-    font-size: 16px;
-    margin-bottom: 16px;
-    letter-spacing: 2px;
-  }
-  .testimonial-text {
-    font-size: 15px;
-    color: var(--white);
-    line-height: 1.6;
-    margin-bottom: 20px;
-    font-style: italic;
-  }
-  .testimonial-author {
-    font-size: 13px;
-    color: var(--muted);
-  }
-  .testimonial-author strong {
-    display: block;
-    color: var(--white);
-    font-weight: 500;
-    margin-bottom: 2px;
-  }
-  .faq {
-    padding: 100px 48px;
-    background: var(--gray);
-  }
-  .faq-inner {
-    max-width: 800px;
-    margin: 0 auto;
-  }
-  .faq-list {
-    margin-top: 48px;
-    display: flex;
-    flex-direction: column;
-    gap: 2px;
-  }
-  .faq-item {
-    border: 1px solid rgba(255,255,255,0.08);
-    background: var(--black);
-  }
-  .faq-item:first-child { border-radius: 12px 12px 0 0; }
-  .faq-item:last-child { border-radius: 0 0 12px 12px; }
+  .testimonial-stars { color: var(--accent2); font-size: 16px; margin-bottom: 16px; letter-spacing: 2px; }
+  .testimonial-text { font-size: 15px; color: var(--white); line-height: 1.7; margin-bottom: 20px; font-style: italic; }
+  .testimonial-author { font-size: 13px; color: var(--muted); }
+  .testimonial-author strong { display: block; color: var(--white); font-weight: 600; margin-bottom: 2px; font-family: 'Barlow Condensed', sans-serif; font-size: 16px; letter-spacing: 0.5px; text-transform: uppercase; }
+
+  /* FAQ */
+  .faq { padding: 100px 48px; background: var(--gray); }
+  .faq-inner { max-width: 800px; margin: 0 auto; }
+  .faq-list { margin-top: 48px; display: flex; flex-direction: column; gap: 2px; }
+  .faq-item { border: 1px solid rgba(255,255,255,0.08); background: var(--black); }
+  .faq-item:first-child { border-radius: 6px 6px 0 0; }
+  .faq-item:last-child { border-radius: 0 0 6px 6px; }
   .faq-q {
     width: 100%;
     background: none;
     border: none;
     color: var(--white);
-    font-family: 'DM Sans', sans-serif;
+    font-family: 'Barlow', sans-serif;
     font-size: 16px;
-    font-weight: 500;
+    font-weight: 600;
     text-align: left;
     padding: 24px 32px;
     cursor: pointer;
@@ -465,34 +493,18 @@
     gap: 16px;
   }
   .faq-q:hover { color: var(--accent); }
-  .faq-q::after {
-    content: '+';
-    font-size: 20px;
-    color: var(--accent);
-    flex-shrink: 0;
-  }
+  .faq-q::after { content: '+'; font-size: 22px; color: var(--accent); flex-shrink: 0; }
   .faq-q.open::after { content: '−'; }
-  .faq-a {
-    display: none;
-    padding: 0 32px 24px;
-    font-size: 15px;
-    color: var(--muted);
-    line-height: 1.7;
-  }
+  .faq-a { display: none; padding: 0 32px 24px; font-size: 15px; color: var(--muted); line-height: 1.7; }
   .faq-a.open { display: block; }
-  .pricing {
-    padding: 100px 48px;
-    background: var(--black);
-  }
-  .pricing-inner {
-    max-width: 800px;
-    margin: 0 auto;
-    text-align: center;
-  }
+
+  /* PRICING */
+  .pricing { padding: 100px 48px; background: var(--black); }
+  .pricing-inner { max-width: 800px; margin: 0 auto; text-align: center; }
   .price-card {
     background: var(--gray);
     border: 1px solid rgba(255,77,28,0.3);
-    border-radius: 24px;
+    border-radius: 8px;
     padding: 64px;
     margin-top: 48px;
     position: relative;
@@ -502,25 +514,25 @@
     content: '';
     position: absolute;
     top: 0; left: 0; right: 0;
-    height: 2px;
+    height: 4px;
     background: linear-gradient(90deg, var(--accent), var(--accent2));
   }
   .discount-badge {
     display: inline-block;
     background: var(--accent);
     color: #fff;
-    font-family: 'Syne', sans-serif;
-    font-weight: 700;
-    font-size: 13px;
-    letter-spacing: 1px;
+    font-family: 'Barlow Condensed', sans-serif;
+    font-weight: 800;
+    font-size: 15px;
+    letter-spacing: 2px;
     text-transform: uppercase;
-    padding: 6px 16px;
-    border-radius: 100px;
-    margin-bottom: 20px;
+    padding: 8px 20px;
+    border-radius: 3px;
+    margin-bottom: 24px;
   }
   .price-original {
-    font-family: 'Syne', sans-serif;
-    font-size: 32px;
+    font-family: 'Barlow Condensed', sans-serif;
+    font-size: 36px;
     font-weight: 700;
     color: var(--muted);
     text-decoration: line-through;
@@ -528,31 +540,30 @@
     margin-bottom: 4px;
   }
   .price-main {
-    font-family: 'Syne', sans-serif;
-    font-size: 80px;
-    font-weight: 800;
+    font-family: 'Barlow Condensed', sans-serif;
+    font-size: 96px;
+    font-weight: 900;
     letter-spacing: -4px;
     line-height: 1;
     margin-bottom: 8px;
     color: var(--white);
   }
   .price-main span {
-    font-size: 32px;
+    font-size: 40px;
     letter-spacing: -1px;
     vertical-align: top;
-    margin-top: 16px;
+    margin-top: 20px;
     display: inline-block;
   }
-  .price-sub {
-    color: var(--muted);
-    font-size: 14px;
-    margin-bottom: 40px;
-  }
+  .price-sub { color: var(--muted); font-size: 15px; margin-bottom: 12px; }
   .price-savings {
     display: inline-block;
     color: var(--accent2);
-    font-size: 14px;
-    font-weight: 500;
+    font-family: 'Barlow Condensed', sans-serif;
+    font-size: 18px;
+    font-weight: 700;
+    letter-spacing: 1px;
+    text-transform: uppercase;
     margin-bottom: 40px;
   }
   .features {
@@ -567,34 +578,39 @@
     display: flex;
     align-items: flex-start;
     gap: 12px;
-    font-size: 14px;
+    font-size: 15px;
     color: var(--muted);
     line-height: 1.5;
+    font-weight: 500;
   }
-  .features li::before {
-    content: '→';
-    color: var(--accent);
-    flex-shrink: 0;
-    font-weight: 700;
-  }
+  .features li::before { content: '→'; color: var(--accent); flex-shrink: 0; font-weight: 700; }
   .btn-buy {
     display: block;
     background: var(--accent);
     color: #fff;
     text-decoration: none;
-    font-family: 'Syne', sans-serif;
-    font-weight: 700;
-    font-size: 18px;
+    font-family: 'Barlow Condensed', sans-serif;
+    font-weight: 900;
+    font-size: 22px;
+    letter-spacing: 2px;
+    text-transform: uppercase;
     padding: 22px;
-    border-radius: 100px;
+    border-radius: 4px;
     text-align: center;
     transition: transform 0.2s, box-shadow 0.2s;
     box-shadow: 0 0 40px rgba(255,77,28,0.3);
+    margin-bottom: 16px;
   }
-  .btn-buy:hover {
-    transform: translateY(-2px);
-    box-shadow: 0 0 60px rgba(255,77,28,0.5);
+  .btn-buy:hover { transform: translateY(-2px); box-shadow: 0 0 60px rgba(255,77,28,0.5); }
+  .btn-buy-sub {
+    font-size: 13px;
+    color: var(--muted);
+    text-align: center;
   }
+  .btn-buy-sub s { color: var(--muted); margin-right: 4px; }
+  .btn-buy-sub strong { color: var(--accent2); }
+
+  /* FOOTER */
   footer {
     padding: 40px 48px;
     border-top: 1px solid rgba(255,255,255,0.08);
@@ -602,90 +618,102 @@
     justify-content: space-between;
     align-items: center;
   }
-  footer .logo { font-size: 18px; }
-  footer p {
-    font-size: 13px;
-    color: var(--muted);
-  }
+  footer .logo { font-size: 20px; }
+  footer p { font-size: 13px; color: var(--muted); }
+
+  /* ANIMATIONS */
   @keyframes fadeUp {
     from { opacity: 0; transform: translateY(30px); }
     to { opacity: 1; transform: translateY(0); }
   }
-  .hero > * {
-    animation: fadeUp 0.8s ease forwards;
-    opacity: 0;
-  }
+  .hero > * { animation: fadeUp 0.8s ease forwards; opacity: 0; }
   .tag { animation-delay: 0.1s; }
   h1 { animation-delay: 0.2s; }
   .hero-sub { animation-delay: 0.3s; }
-  .hero-demo-number { animation-delay: 0.32s; }
-  .hero-demo-label { animation-delay: 0.33s; }
-  .urgency { animation-delay: 0.35s; }
+  .hero-discount-bar { animation-delay: 0.32s; }
+  .hero-demo-number { animation-delay: 0.34s; }
+  .hero-demo-label { animation-delay: 0.35s; }
+  .urgency { animation-delay: 0.37s; }
   .cta-group { animation-delay: 0.4s; }
+
+  /* MOBILE */
   @media (max-width: 768px) {
-    nav { padding: 20px 24px; }
-    .hero { padding: 100px 24px 60px; }
-    h1 { letter-spacing: -2px; }
-    .stats { margin: 0 24px; flex-direction: column; }
-    .stat { border-right: none; border-bottom: 1px solid rgba(255,255,255,0.08); padding: 32px 24px; }
-    .pain, .demo-section, .testimonials { padding: 60px 24px; }
+    nav { padding: 16px 20px; }
+    .hero { padding: 100px 20px 60px; }
+    h1 { font-size: 56px; }
+    .stats { margin: 0 20px; flex-direction: column; }
+    .stat { border-right: none; border-bottom: 1px solid rgba(255,255,255,0.08); padding: 28px 20px; }
+    .pain, .demo-section, .testimonials { padding: 60px 20px; }
     .pain-grid { grid-template-columns: 1fr; }
     .pain-item { border-right: none; border-bottom: 1px solid rgba(255,255,255,0.05); }
-    .how { padding: 60px 24px; }
-    .steps { grid-template-columns: 1fr 1fr; gap: 24px; }
-    .faq { padding: 60px 24px; }
-    .pricing { padding: 60px 24px; }
-    .price-card { padding: 40px 24px; }
+    .how { padding: 60px 20px; }
+    .steps { grid-template-columns: 1fr 1fr; gap: 20px; }
+    .faq { padding: 60px 20px; }
+    .pricing { padding: 60px 20px; }
+    .price-card { padding: 32px 20px; }
     .features { grid-template-columns: 1fr; }
-    .phone-card { padding: 40px 32px; }
-    .phone-display { font-size: 32px; }
+    .phone-card { padding: 36px 24px; }
+    .phone-display { font-size: 40px; }
     .testimonial-grid { grid-template-columns: 1fr; }
     footer { flex-direction: column; gap: 16px; text-align: center; }
+    .nav-discount { display: none; }
   }
 </style>
 </head>
 <body>
 <nav>
   <div class="logo">Call<span>Done</span></div>
-  <a href="https://buy.stripe.com/fZu4gz175dGY5sm4fs2Ry07" onclick="trackPurchaseClick()">Get Started — $1,000</a>
+  <div class="nav-right">
+    <div class="nav-discount"><s>$2,000</s> → $1,000 Setup — 50% Off Today</div>
+    <a href="https://buy.stripe.com/fZu4gz175dGY5sm4fs2Ry07" onclick="trackPurchaseClick()">Get Started — $1,000</a>
+  </div>
 </nav>
+
 <section class="hero">
-  <div class="tag">AI Receptionist for Contractors</div>
+  <div class="tag">⚡ AI Receptionist Built for Contractors</div>
   <h1>Stop losing jobs to <em>missed</em> calls.</h1>
   <p class="hero-sub">
     CallDone answers every call, books service appointments, and qualifies job leads <strong>24 hours a day</strong> — so you can stay on the job site while your phone gets handled.
   </p>
+  <div class="hero-discount-bar">
+    <span class="badge">🔥 50% Off Launch Deal</span>
+    <span class="text"><s>$2,000 setup</s> → Get started for <strong>$1,000 today only</strong></span>
+  </div>
   <a href="tel:+15632871146" style="text-decoration:none;">
     <div class="hero-demo-number">📞 (563) 287-1146</div>
   </a>
   <div class="hero-demo-label">Call the live AI demo right now — free, no commitment</div>
-  <div class="urgency">Only a few spots open this month — live in 48 hours once you claim yours.</div>
+  <div class="urgency">⚠ Only a few spots open this month — live in 48 hours</div>
   <div class="cta-group">
-    <a href="https://buy.stripe.com/fZu4gz175dGY5sm4fs2Ry07" class="btn-primary" onclick="trackPurchaseClick()">Get CallDone — $1,000 setup</a>
+    <a href="https://buy.stripe.com/fZu4gz175dGY5sm4fs2Ry07" class="btn-primary" onclick="trackPurchaseClick()">
+      Claim 50% Off — Get Started
+      <span class="btn-sub"><s>$2,000</s> → $1,000 setup today only</span>
+    </a>
     <a href="tel:+15632871146" class="demo-link">
-      <div class="demo-icon">📞</div>
-      Hear the AI live
+      📞 Hear the AI Live
     </a>
   </div>
 </section>
+
 <div class="stats">
   <div class="stat">
     <div class="stat-num">$400</div>
-    <div class="stat-label">average value of one<br>missed service call</div>
+    <div class="stat-label">average value of one missed service call</div>
   </div>
   <div class="stat">
     <div class="stat-num">$3,500+</div>
-    <div class="stat-label">average value of a<br>missed install or estimate</div>
+    <div class="stat-label">average value of a missed install or estimate</div>
   </div>
   <div class="stat">
     <div class="stat-num">24/7</div>
-    <div class="stat-label">CallDone answers<br>every single call</div>
+    <div class="stat-label">CallDone answers every single call</div>
   </div>
   <div class="stat">
     <div class="stat-num">48hr</div>
-    <div class="stat-label">from payment to<br>your AI going live</div>
+    <div class="stat-label">from payment to your AI going live</div>
   </div>
 </div>
+
 <section class="pain">
   <div class="section-label">The problem</div>
   <h2>Every missed call is a job your competitor just took.</h2>
@@ -713,6 +741,7 @@
     </div>
   </div>
 </section>
+
 <section class="how">
   <div class="how-inner">
     <div class="section-label">How it works</div>
@@ -721,7 +750,7 @@
       <div class="step">
         <div class="step-num">1</div>
         <h3>You pay online</h3>
-        <p>One-time $1,000 setup fee. We handle everything from there.</p>
+        <p>One-time setup fee. We handle everything from there. No tech knowledge needed.</p>
       </div>
       <div class="step">
         <div class="step-num">2</div>
@@ -731,28 +760,28 @@
       <div class="step">
         <div class="step-num">3</div>
         <h3>Forward your calls</h3>
-        <p>One simple call forwarding setting. Takes 2 minutes on any cell or office phone.</p>
+        <p>One simple call forwarding setting on your phone. Takes 2 minutes. Your number stays the same.</p>
       </div>
       <div class="step">
         <div class="step-num">4</div>
         <h3>Stay on the job</h3>
-        <p>Your AI answers 24/7, books appointments, gets the address and the issue, and texts you a summary the second you're free.</p>
+        <p>Your AI answers 24/7, books appointments, gets the job details, and texts you a summary the second you're free.</p>
       </div>
     </div>
   </div>
 </section>
+
 <section class="demo-section">
   <div class="section-label">Live demo</div>
-  <h2>Call it right now. Hear it for yourself.</h2>
+  <h2>Call it right now. Hear it yourself.</h2>
   <p style="color: var(--muted); font-size: 16px; margin-top: 12px;">This is the actual AI your callers will hear. Try to book a service call, ask about pricing, see how it handles you.</p>
   <div class="phone-card">
     <div class="phone-display">(563) 287-1146</div>
-    <div class="phone-sub">Free to call. No commitment.</div>
-    <a href="tel:+15632871146" class="pulse-btn">
-      📞 Call the demo now
-    </a>
+    <div class="phone-sub">Free to call. No commitment. Takes 30 seconds.</div>
+    <a href="tel:+15632871146" class="pulse-btn">📞 Call the Demo Now</a>
   </div>
 </section>
+
 <section class="testimonials">
   <div class="section-label">What contractors are saying</div>
   <h2>Real results from real tradesmen.</h2>
@@ -783,10 +812,11 @@
     </div>
   </div>
 </section>
+
 <section class="faq">
   <div class="faq-inner">
     <div class="section-label">FAQ</div>
-    <h2>Got questions? We've got answers.</h2>
+    <h2>Got questions? We got answers.</h2>
     <div class="faq-list">
       <div class="faq-item">
         <button class="faq-q" onclick="toggleFaq(this)">Will it sound robotic to my customers?</button>
@@ -815,6 +845,7 @@
     </div>
   </div>
 </section>
+
 <section class="pricing">
   <div class="pricing-inner">
     <div class="section-label">Pricing</div>
@@ -824,7 +855,7 @@
       <div class="price-original">$2,000 setup</div>
       <div class="price-main"><span>$</span>1,000</div>
       <div class="price-sub">one-time setup + $500/month</div>
-      <div class="price-savings">You save $1,000 today only</div>
+      <div class="price-savings">✓ You save $1,000 — limited time only</div>
       <ul class="features">
         <li>Custom AI trained on your business</li>
         <li>Service appointment booking built in</li>
@@ -837,14 +868,17 @@
         <li>Works on any cell or office phone</li>
         <li>Cancel anytime, no contracts</li>
       </ul>
-      <a href="https://buy.stripe.com/fZu4gz175dGY5sm4fs2Ry07" class="btn-buy" onclick="trackPurchaseClick()">Claim Your Discount — Get CallDone for $1,000 →</a>
+      <a href="https://buy.stripe.com/fZu4gz175dGY5sm4fs2Ry07" class="btn-buy" onclick="trackPurchaseClick()">Claim 50% Off — Get CallDone for $1,000 →</a>
+      <div class="btn-buy-sub"><s>Regular price $2,000</s> → <strong>Save $1,000 today</strong></div>
     </div>
   </div>
 </section>
+
 <footer>
   <div class="logo">Call<span>Done</span></div>
   <p>© 2026 CallDone. All rights reserved.</p>
 </footer>
+
 <script>
 function toggleFaq(btn) {
   const answer = btn.nextElementSibling;
@@ -856,7 +890,6 @@ function toggleFaq(btn) {
     btn.classList.add('open');
   }
 }
-
 function trackPurchaseClick() {
   gtag('event', 'conversion', {
     'send_to': 'AW-18178769860/JuFbCIil87AcEMSHqNxD',

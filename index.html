@@ -505,6 +505,28 @@
     height: 2px;
     background: linear-gradient(90deg, var(--accent), var(--accent2));
   }
+  .discount-badge {
+    display: inline-block;
+    background: var(--accent);
+    color: #fff;
+    font-family: 'Syne', sans-serif;
+    font-weight: 700;
+    font-size: 13px;
+    letter-spacing: 1px;
+    text-transform: uppercase;
+    padding: 6px 16px;
+    border-radius: 100px;
+    margin-bottom: 20px;
+  }
+  .price-original {
+    font-family: 'Syne', sans-serif;
+    font-size: 32px;
+    font-weight: 700;
+    color: var(--muted);
+    text-decoration: line-through;
+    letter-spacing: -1px;
+    margin-bottom: 4px;
+  }
   .price-main {
     font-family: 'Syne', sans-serif;
     font-size: 80px;
@@ -512,6 +534,7 @@
     letter-spacing: -4px;
     line-height: 1;
     margin-bottom: 8px;
+    color: var(--white);
   }
   .price-main span {
     font-size: 32px;
@@ -523,6 +546,13 @@
   .price-sub {
     color: var(--muted);
     font-size: 14px;
+    margin-bottom: 40px;
+  }
+  .price-savings {
+    display: inline-block;
+    color: var(--accent2);
+    font-size: 14px;
+    font-weight: 500;
     margin-bottom: 40px;
   }
   .features {
@@ -790,8 +820,11 @@
     <div class="section-label">Pricing</div>
     <h2>Simple. No surprises.</h2>
     <div class="price-card">
+      <div class="discount-badge">🔥 Launch Discount — 50% Off Setup</div>
+      <div class="price-original">$2,000 setup</div>
       <div class="price-main"><span>$</span>1,000</div>
       <div class="price-sub">one-time setup + $500/month</div>
+      <div class="price-savings">You save $1,000 today only</div>
       <ul class="features">
         <li>Custom AI trained on your business</li>
         <li>Service appointment booking built in</li>
@@ -804,7 +837,7 @@
         <li>Works on any cell or office phone</li>
         <li>Cancel anytime, no contracts</li>
       </ul>
-      <a href="https://buy.stripe.com/fZu4gz175dGY5sm4fs2Ry07" class="btn-buy" onclick="trackPurchaseClick()">Get CallDone for your business →</a>
+      <a href="https://buy.stripe.com/fZu4gz175dGY5sm4fs2Ry07" class="btn-buy" onclick="trackPurchaseClick()">Claim Your Discount — Get CallDone for $1,000 →</a>
     </div>
   </div>
 </section>

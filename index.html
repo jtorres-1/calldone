@@ -672,7 +672,7 @@
   .features {
     list-style: none;
     text-align: left;
-    margin-bottom: 48px;
+    margin-bottom: 32px;
     display: grid;
     grid-template-columns: 1fr 1fr;
     gap: 14px;
@@ -687,6 +687,39 @@
     line-height: 1.5;
   }
   .features li::before { content: '✓'; color: var(--accent3); flex-shrink: 0; font-weight: 700; margin-top: 1px; }
+
+  /* CONTACT BAR */
+  .contact-bar {
+    background: rgba(0,194,255,0.06);
+    border: 1px solid rgba(0,194,255,0.15);
+    border-radius: 10px;
+    padding: 20px 24px;
+    margin-bottom: 24px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 12px;
+    flex-wrap: wrap;
+    position: relative;
+  }
+  .contact-bar-text {
+    font-size: 14px;
+    color: var(--muted);
+  }
+  .contact-bar-link {
+    font-family: 'Syne', sans-serif;
+    font-size: 16px;
+    font-weight: 800;
+    color: var(--accent);
+    text-decoration: none;
+    letter-spacing: 0.5px;
+  }
+  .contact-bar-link:hover { opacity: 0.8; }
+  .contact-bar-divider {
+    color: var(--muted);
+    font-size: 12px;
+  }
+
   .btn-buy {
     display: block;
     background: linear-gradient(135deg, var(--accent), var(--accent2));
@@ -1058,6 +1091,10 @@
         <li>Works on any existing phone number</li>
         <li>Cancel anytime, no fees</li>
       </ul>
+      <div class="contact-bar">
+        <span class="contact-bar-text">Have a question before signing up?</span>
+        <a href="tel:+13234723070" class="contact-bar-link">📲 Text or call Jesse: (323) 472-3070</a>
+      </div>
       <a href="https://buy.stripe.com/4gM14n5nl9qI7Au9zM2Ry08" class="btn-buy" onclick="trackPurchaseClick()">Get Started — $500/mo →</a>
       <div class="btn-buy-sub"><strong>No setup fee. Live in 48 hours. Cancel anytime.</strong></div>
     </div>

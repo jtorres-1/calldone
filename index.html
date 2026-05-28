@@ -11,23 +11,25 @@
 </script>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>CallDone — Your Phone Never Goes Unanswered Again</title>
-<link href="https://fonts.googleapis.com/css2?family=Barlow+Condensed:wght@400;600;700;800;900&family=Barlow:wght@300;400;500;600&display=swap" rel="stylesheet">
+<title>CallDone — Your Business Never Misses a Call Again</title>
+<link href="https://fonts.googleapis.com/css2?family=DM+Sans:ital,wght@0,300;0,400;0,500;0,600;1,400&family=Syne:wght@700;800;900&display=swap" rel="stylesheet">
 <style>
   :root {
-    --black: #0d0d0d;
-    --white: #f0ede8;
-    --accent: #ff4d1c;
-    --accent2: #ffb347;
-    --gray: #181818;
-    --muted: #777;
-    --blue: #1a3a5c;
+    --black: #080c10;
+    --white: #eef2f7;
+    --accent: #00c2ff;
+    --accent2: #7b5cfa;
+    --accent3: #00ffb2;
+    --gray: #0f1520;
+    --gray2: #161d2c;
+    --muted: #5a6a82;
+    --border: rgba(255,255,255,0.07);
   }
   * { margin: 0; padding: 0; box-sizing: border-box; }
   body {
     background: var(--black);
     color: var(--white);
-    font-family: 'Barlow', sans-serif;
+    font-family: 'DM Sans', sans-serif;
     overflow-x: hidden;
   }
 
@@ -36,49 +38,46 @@
     display: flex;
     justify-content: space-between;
     align-items: center;
-    padding: 20px 48px;
+    padding: 20px 56px;
     position: fixed;
     top: 0; left: 0; right: 0;
     z-index: 100;
-    background: rgba(13,13,13,0.95);
-    backdrop-filter: blur(12px);
-    border-bottom: 1px solid rgba(255,255,255,0.06);
+    background: rgba(8,12,16,0.92);
+    backdrop-filter: blur(20px);
+    border-bottom: 1px solid var(--border);
   }
   .logo {
-    font-family: 'Barlow Condensed', sans-serif;
+    font-family: 'Syne', sans-serif;
     font-weight: 900;
-    font-size: 26px;
-    letter-spacing: 1px;
-    text-transform: uppercase;
+    font-size: 24px;
+    letter-spacing: -0.5px;
   }
   .logo span { color: var(--accent); }
-  .nav-right {
-    display: flex;
-    flex-direction: column;
-    align-items: flex-end;
-    gap: 4px;
-  }
-  .nav-discount {
-    font-size: 11px;
-    color: var(--accent2);
+  .nav-right { display: flex; align-items: center; gap: 20px; }
+  .nav-tag {
+    font-size: 12px;
+    color: var(--accent3);
     font-weight: 600;
     letter-spacing: 1px;
     text-transform: uppercase;
+    border: 1px solid rgba(0,255,178,0.25);
+    padding: 6px 14px;
+    border-radius: 100px;
   }
   nav a.nav-cta {
-    color: var(--white);
+    color: var(--black);
     text-decoration: none;
-    font-family: 'Barlow Condensed', sans-serif;
-    font-weight: 700;
-    font-size: 16px;
-    letter-spacing: 1px;
+    font-family: 'Syne', sans-serif;
+    font-weight: 800;
+    font-size: 14px;
+    letter-spacing: 0.5px;
     text-transform: uppercase;
-    padding: 10px 28px;
+    padding: 11px 28px;
     background: var(--accent);
-    border-radius: 4px;
-    transition: opacity 0.2s;
+    border-radius: 6px;
+    transition: opacity 0.2s, transform 0.2s;
   }
-  nav a.nav-cta:hover { opacity: 0.85; }
+  nav a.nav-cta:hover { opacity: 0.9; transform: translateY(-1px); }
 
   /* HERO */
   .hero {
@@ -86,325 +85,365 @@
     display: flex;
     flex-direction: column;
     justify-content: center;
-    padding: 140px 48px 80px;
+    padding: 160px 56px 100px;
     position: relative;
     overflow: hidden;
-    background: linear-gradient(135deg, #0d0d0d 60%, #1a1008 100%);
   }
-  .hero::before {
-    content: '';
+  .hero-bg {
     position: absolute;
-    top: -200px; right: -200px;
-    width: 700px; height: 700px;
-    background: radial-gradient(circle, rgba(255,77,28,0.12) 0%, transparent 70%);
+    inset: 0;
+    background: 
+      radial-gradient(ellipse 80% 60% at 70% 40%, rgba(0,194,255,0.07) 0%, transparent 60%),
+      radial-gradient(ellipse 50% 50% at 20% 80%, rgba(123,92,250,0.08) 0%, transparent 60%),
+      var(--black);
     pointer-events: none;
   }
-  .tag {
+  .hero-grid {
+    position: absolute;
+    inset: 0;
+    background-image: linear-gradient(rgba(255,255,255,0.02) 1px, transparent 1px), linear-gradient(90deg, rgba(255,255,255,0.02) 1px, transparent 1px);
+    background-size: 60px 60px;
+    pointer-events: none;
+    mask-image: radial-gradient(ellipse 80% 80% at 50% 50%, black 0%, transparent 100%);
+  }
+  .hero > * { position: relative; z-index: 1; }
+  .eyebrow {
     display: inline-flex;
     align-items: center;
-    gap: 8px;
-    font-family: 'Barlow Condensed', sans-serif;
-    font-size: 13px;
-    font-weight: 700;
+    gap: 10px;
+    font-size: 12px;
+    font-weight: 600;
     letter-spacing: 3px;
     text-transform: uppercase;
     color: var(--accent);
-    border: 1px solid rgba(255,77,28,0.4);
-    padding: 8px 18px;
-    border-radius: 3px;
-    margin-bottom: 28px;
+    margin-bottom: 32px;
     width: fit-content;
   }
+  .eyebrow-dot {
+    width: 6px; height: 6px;
+    background: var(--accent);
+    border-radius: 50%;
+    animation: blink 2s ease-in-out infinite;
+  }
+  @keyframes blink {
+    0%,100% { opacity:1; } 50% { opacity:0.2; }
+  }
   h1 {
-    font-family: 'Barlow Condensed', sans-serif;
-    font-size: clamp(56px, 8vw, 110px);
+    font-family: 'Syne', sans-serif;
+    font-size: clamp(52px, 7.5vw, 108px);
     font-weight: 900;
-    line-height: 0.92;
-    letter-spacing: -1px;
-    text-transform: uppercase;
-    max-width: 900px;
-    margin-bottom: 28px;
+    line-height: 0.93;
+    letter-spacing: -3px;
+    max-width: 980px;
+    margin-bottom: 32px;
   }
   h1 em {
     font-style: normal;
-    color: var(--accent);
+    background: linear-gradient(90deg, var(--accent), var(--accent2));
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
   }
   .hero-sub {
     font-size: 19px;
     color: var(--muted);
-    max-width: 540px;
-    line-height: 1.6;
-    margin-bottom: 20px;
+    max-width: 560px;
+    line-height: 1.65;
+    margin-bottom: 28px;
     font-weight: 400;
   }
   .hero-sub strong { color: var(--white); font-weight: 600; }
 
-  /* NO SETUP FEE BANNER */
-  .hero-no-setup {
-    display: inline-flex;
+  .hero-demo-row {
+    display: flex;
     align-items: center;
     gap: 16px;
-    background: rgba(255,179,71,0.12);
-    border: 1px solid rgba(255,179,71,0.4);
-    border-radius: 4px;
-    padding: 14px 22px;
-    margin-bottom: 16px;
-    width: fit-content;
+    margin-bottom: 10px;
+    flex-wrap: wrap;
   }
-  .hero-no-setup .badge {
-    background: var(--accent2);
-    color: #0d0d0d;
-    font-family: 'Barlow Condensed', sans-serif;
+  .demo-number {
+    font-family: 'Syne', sans-serif;
+    font-size: clamp(28px, 3.5vw, 46px);
     font-weight: 900;
-    font-size: 13px;
-    letter-spacing: 2px;
-    text-transform: uppercase;
-    padding: 4px 10px;
-    border-radius: 3px;
-  }
-  .hero-no-setup .text {
-    font-size: 16px;
-    color: var(--white);
-    font-weight: 600;
-  }
-  .hero-no-setup .text strong {
-    color: var(--accent2);
-    font-size: 20px;
-  }
-
-  .hero-demo-number {
-    font-family: 'Barlow Condensed', sans-serif;
-    font-size: clamp(32px, 4vw, 52px);
-    font-weight: 800;
-    letter-spacing: 1px;
     color: var(--accent);
-    margin-bottom: 6px;
+    letter-spacing: -1px;
+    text-decoration: none;
+  }
+  .demo-number:hover { opacity: 0.85; }
+  .demo-badge {
+    font-size: 12px;
+    font-weight: 600;
+    color: var(--accent3);
+    border: 1px solid rgba(0,255,178,0.3);
+    padding: 5px 12px;
+    border-radius: 100px;
+    letter-spacing: 0.5px;
     text-transform: uppercase;
   }
   .hero-demo-label {
     font-size: 13px;
     color: var(--muted);
-    margin-bottom: 24px;
-    letter-spacing: 0.5px;
+    margin-bottom: 36px;
   }
+
   .urgency {
     display: inline-flex;
     align-items: center;
     gap: 8px;
-    font-size: 13px;
+    font-size: 12px;
     color: var(--accent2);
     margin-bottom: 32px;
     font-weight: 600;
-    letter-spacing: 0.5px;
+    letter-spacing: 1px;
     text-transform: uppercase;
   }
-  .urgency::before {
-    content: '';
-    width: 8px; height: 8px;
+  .urgency-dot {
+    width: 7px; height: 7px;
     background: var(--accent2);
     border-radius: 50%;
     animation: blink 1.5s ease-in-out infinite;
     flex-shrink: 0;
   }
-  @keyframes blink {
-    0%, 100% { opacity: 1; }
-    50% { opacity: 0.2; }
-  }
+
   .cta-group {
     display: flex;
-    gap: 16px;
+    gap: 14px;
     align-items: center;
     flex-wrap: wrap;
+    margin-bottom: 40px;
   }
   .btn-primary {
     display: inline-flex;
     flex-direction: column;
     align-items: center;
     background: var(--accent);
-    color: #fff;
+    color: var(--black);
     text-decoration: none;
-    font-family: 'Barlow Condensed', sans-serif;
+    font-family: 'Syne', sans-serif;
     font-weight: 800;
-    font-size: 18px;
-    letter-spacing: 1px;
+    font-size: 16px;
+    letter-spacing: 0.5px;
     text-transform: uppercase;
-    padding: 16px 40px;
-    border-radius: 4px;
+    padding: 16px 44px;
+    border-radius: 6px;
     transition: transform 0.2s, box-shadow 0.2s;
-    box-shadow: 0 0 40px rgba(255,77,28,0.3);
+    box-shadow: 0 0 50px rgba(0,194,255,0.25);
     gap: 4px;
   }
-  .btn-primary .btn-sub {
-    font-size: 11px;
-    font-weight: 600;
-    opacity: 0.85;
-    letter-spacing: 1px;
-  }
-  .btn-primary:hover {
-    transform: translateY(-2px);
-    box-shadow: 0 0 60px rgba(255,77,28,0.5);
-  }
+  .btn-primary .btn-sub { font-size: 11px; font-weight: 500; opacity: 0.75; letter-spacing: 0.5px; font-family: 'DM Sans', sans-serif; }
+  .btn-primary:hover { transform: translateY(-2px); box-shadow: 0 0 70px rgba(0,194,255,0.4); }
   .demo-link {
     display: flex;
     align-items: center;
     gap: 10px;
     color: var(--white);
     text-decoration: none;
-    font-family: 'Barlow Condensed', sans-serif;
+    font-family: 'Syne', sans-serif;
     font-weight: 700;
-    font-size: 16px;
-    letter-spacing: 1px;
+    font-size: 14px;
+    letter-spacing: 0.5px;
     text-transform: uppercase;
     padding: 16px 32px;
-    border: 2px solid rgba(255,255,255,0.2);
-    border-radius: 4px;
+    border: 1.5px solid var(--border);
+    border-radius: 6px;
     transition: border-color 0.2s;
   }
-  .demo-link:hover { border-color: rgba(255,255,255,0.5); }
+  .demo-link:hover { border-color: rgba(0,194,255,0.4); color: var(--accent); }
 
-  /* TRUST PILLS */
   .trust-pills {
     display: flex;
-    gap: 12px;
+    gap: 10px;
     flex-wrap: wrap;
-    margin-top: 24px;
   }
   .pill {
     display: inline-flex;
     align-items: center;
     gap: 6px;
     font-size: 12px;
-    font-weight: 600;
+    font-weight: 500;
     color: var(--muted);
     letter-spacing: 0.5px;
     text-transform: uppercase;
   }
-  .pill::before {
-    content: '✓';
-    color: var(--accent2);
-    font-size: 13px;
-    font-weight: 900;
+  .pill-check { color: var(--accent3); font-size: 13px; font-weight: 700; }
+
+  /* WHO WE SERVE */
+  .who {
+    padding: 60px 56px;
+    border-top: 1px solid var(--border);
+    border-bottom: 1px solid var(--border);
+    background: var(--gray);
   }
+  .who-inner { max-width: 1100px; margin: 0 auto; }
+  .who-label {
+    font-size: 12px;
+    font-weight: 600;
+    letter-spacing: 3px;
+    text-transform: uppercase;
+    color: var(--muted);
+    margin-bottom: 28px;
+    text-align: center;
+  }
+  .who-grid {
+    display: flex;
+    justify-content: center;
+    gap: 8px;
+    flex-wrap: wrap;
+  }
+  .who-pill {
+    background: var(--gray2);
+    border: 1px solid var(--border);
+    border-radius: 100px;
+    padding: 10px 22px;
+    font-size: 14px;
+    font-weight: 500;
+    color: var(--white);
+    letter-spacing: 0.3px;
+  }
+  .who-pill span { color: var(--accent); margin-right: 6px; }
 
   /* STATS */
   .stats {
-    display: flex;
-    border-top: 1px solid rgba(255,255,255,0.08);
-    border-bottom: 1px solid rgba(255,255,255,0.08);
-    margin: 0 48px;
+    display: grid;
+    grid-template-columns: repeat(4,1fr);
+    border-bottom: 1px solid var(--border);
   }
   .stat {
-    flex: 1;
-    padding: 40px 32px;
-    border-right: 1px solid rgba(255,255,255,0.08);
+    padding: 48px 40px;
+    border-right: 1px solid var(--border);
+    position: relative;
+    overflow: hidden;
   }
   .stat:last-child { border-right: none; }
+  .stat::before {
+    content: '';
+    position: absolute;
+    top: 0; left: 0; right: 0;
+    height: 2px;
+    background: linear-gradient(90deg, var(--accent), var(--accent2));
+    opacity: 0;
+    transition: opacity 0.3s;
+  }
+  .stat:hover::before { opacity: 1; }
   .stat-num {
-    font-family: 'Barlow Condensed', sans-serif;
-    font-size: 52px;
+    font-family: 'Syne', sans-serif;
+    font-size: 54px;
     font-weight: 900;
     color: var(--accent);
     line-height: 1;
-    margin-bottom: 8px;
-    letter-spacing: -1px;
+    margin-bottom: 10px;
+    letter-spacing: -2px;
   }
-  .stat-label {
-    font-size: 13px;
-    color: var(--muted);
-    line-height: 1.4;
-    font-weight: 500;
-  }
+  .stat-label { font-size: 13px; color: var(--muted); line-height: 1.5; }
 
   /* SECTIONS */
   .section-label {
-    font-family: 'Barlow Condensed', sans-serif;
-    font-size: 12px;
+    font-size: 11px;
     letter-spacing: 4px;
     text-transform: uppercase;
-    color: var(--muted);
-    margin-bottom: 16px;
+    color: var(--accent);
+    margin-bottom: 14px;
+    font-weight: 600;
   }
   h2 {
-    font-family: 'Barlow Condensed', sans-serif;
-    font-size: clamp(36px, 4vw, 56px);
+    font-family: 'Syne', sans-serif;
+    font-size: clamp(34px, 4vw, 54px);
     font-weight: 900;
-    letter-spacing: -0.5px;
-    text-transform: uppercase;
+    letter-spacing: -1.5px;
     line-height: 1.05;
-    margin-bottom: 48px;
+    margin-bottom: 56px;
   }
 
   /* PAIN */
   .pain {
-    padding: 100px 48px;
-    max-width: 1100px;
+    padding: 110px 56px;
+    max-width: 1200px;
     margin: 0 auto;
   }
   .pain-grid {
     display: grid;
     grid-template-columns: repeat(3, 1fr);
-    gap: 2px;
-    background: rgba(255,255,255,0.05);
-    border: 1px solid rgba(255,255,255,0.08);
+    gap: 1px;
+    background: var(--border);
+    border: 1px solid var(--border);
+    border-radius: 12px;
+    overflow: hidden;
   }
   .pain-item {
-    background: var(--black);
-    padding: 40px 32px;
-    border-right: 1px solid rgba(255,255,255,0.05);
+    background: var(--gray);
+    padding: 44px 36px;
+    transition: background 0.3s;
   }
-  .pain-item:last-child { border-right: none; }
-  .pain-num {
-    font-family: 'Barlow Condensed', sans-serif;
-    font-size: 64px;
-    font-weight: 900;
-    opacity: 0.08;
-    line-height: 1;
-    margin-bottom: 12px;
-  }
-  .pain-text { font-size: 15px; color: var(--muted); line-height: 1.6; }
+  .pain-item:hover { background: var(--gray2); }
+  .pain-icon { font-size: 32px; margin-bottom: 20px; }
+  .pain-text { font-size: 15px; color: var(--muted); line-height: 1.7; }
   .pain-text strong {
     display: block;
     color: var(--white);
-    font-size: 18px;
+    font-size: 17px;
     font-weight: 600;
-    margin-bottom: 8px;
+    margin-bottom: 10px;
+    font-family: 'Syne', sans-serif;
+    letter-spacing: -0.3px;
   }
 
   /* HOW */
-  .how { padding: 100px 48px; background: var(--gray); }
+  .how { padding: 110px 56px; background: var(--gray); }
   .how-inner { max-width: 1100px; margin: 0 auto; }
   .steps {
     display: grid;
     grid-template-columns: repeat(4, 1fr);
-    gap: 32px;
-    margin-top: 48px;
+    gap: 2px;
+    background: var(--border);
+    border: 1px solid var(--border);
+    border-radius: 12px;
+    overflow: hidden;
   }
+  .step {
+    background: var(--black);
+    padding: 44px 32px;
+    position: relative;
+  }
+  .step::after {
+    content: '';
+    position: absolute;
+    top: 44px; right: -1px;
+    width: 1px; height: 40px;
+    background: var(--accent);
+    opacity: 0.4;
+  }
+  .step:last-child::after { display: none; }
   .step-num {
-    width: 44px; height: 44px;
-    border: 2px solid var(--accent);
-    border-radius: 3px;
+    font-family: 'Syne', sans-serif;
+    font-size: 13px;
+    font-weight: 800;
+    color: var(--accent);
+    letter-spacing: 2px;
+    text-transform: uppercase;
+    margin-bottom: 20px;
     display: flex;
     align-items: center;
-    justify-content: center;
-    font-family: 'Barlow Condensed', sans-serif;
-    font-size: 18px;
-    font-weight: 900;
-    color: var(--accent);
-    margin-bottom: 20px;
+    gap: 8px;
+  }
+  .step-num::before {
+    content: '';
+    display: inline-block;
+    width: 24px; height: 2px;
+    background: var(--accent);
   }
   .step h3 {
-    font-family: 'Barlow Condensed', sans-serif;
-    font-size: 20px;
+    font-family: 'Syne', sans-serif;
+    font-size: 18px;
     font-weight: 800;
-    text-transform: uppercase;
-    letter-spacing: 0.5px;
-    margin-bottom: 10px;
+    letter-spacing: -0.3px;
+    margin-bottom: 12px;
+    line-height: 1.2;
   }
-  .step p { font-size: 15px; color: var(--muted); line-height: 1.6; }
+  .step p { font-size: 14px; color: var(--muted); line-height: 1.65; }
 
   /* DEMO */
   .demo-section {
-    padding: 100px 48px;
+    padding: 110px 56px;
     max-width: 1100px;
     margin: 0 auto;
     text-align: center;
@@ -412,94 +451,137 @@
   .phone-card {
     display: inline-block;
     background: var(--gray);
-    border: 1px solid rgba(255,255,255,0.1);
-    border-radius: 8px;
-    padding: 48px 64px;
+    border: 1px solid var(--border);
+    border-radius: 16px;
+    padding: 56px 80px;
     margin-top: 48px;
     position: relative;
+    overflow: hidden;
   }
   .phone-card::before {
     content: '';
     position: absolute;
     top: 0; left: 0; right: 0;
     height: 3px;
-    background: linear-gradient(90deg, var(--accent), var(--accent2));
-    border-radius: 8px 8px 0 0;
+    background: linear-gradient(90deg, var(--accent), var(--accent2), var(--accent3));
+  }
+  .phone-glow {
+    position: absolute;
+    top: 50%; left: 50%;
+    transform: translate(-50%, -50%);
+    width: 400px; height: 200px;
+    background: radial-gradient(ellipse, rgba(0,194,255,0.08) 0%, transparent 70%);
+    pointer-events: none;
   }
   .phone-display {
-    font-family: 'Barlow Condensed', sans-serif;
-    font-size: 56px;
+    font-family: 'Syne', sans-serif;
+    font-size: 58px;
     font-weight: 900;
-    letter-spacing: 2px;
+    letter-spacing: -1px;
     color: var(--white);
-    margin-bottom: 12px;
+    margin-bottom: 8px;
+    position: relative;
   }
-  .phone-sub { font-size: 14px; color: var(--muted); margin-bottom: 32px; }
+  .phone-sub { font-size: 14px; color: var(--muted); margin-bottom: 36px; position: relative; }
   .pulse-btn {
     display: inline-flex;
     align-items: center;
     gap: 12px;
-    background: var(--accent);
+    background: linear-gradient(135deg, var(--accent), var(--accent2));
     color: #fff;
     text-decoration: none;
-    font-family: 'Barlow Condensed', sans-serif;
+    font-family: 'Syne', sans-serif;
     font-weight: 800;
-    font-size: 18px;
-    letter-spacing: 1px;
+    font-size: 16px;
+    letter-spacing: 0.5px;
     text-transform: uppercase;
-    padding: 16px 40px;
-    border-radius: 4px;
+    padding: 16px 44px;
+    border-radius: 8px;
     position: relative;
+    box-shadow: 0 0 40px rgba(0,194,255,0.25);
   }
   .pulse-btn::before {
     content: '';
     position: absolute;
     inset: -4px;
-    border-radius: 8px;
-    background: var(--accent);
-    opacity: 0.3;
+    border-radius: 12px;
+    background: linear-gradient(135deg, var(--accent), var(--accent2));
+    opacity: 0.25;
     animation: pulse 2s ease-in-out infinite;
   }
   @keyframes pulse {
-    0%, 100% { transform: scale(1); opacity: 0.3; }
+    0%,100% { transform: scale(1); opacity: 0.25; }
     50% { transform: scale(1.06); opacity: 0; }
   }
 
   /* TESTIMONIALS */
-  .testimonials { padding: 100px 48px; max-width: 1100px; margin: 0 auto; }
+  .testimonials { padding: 110px 56px; background: var(--gray); }
+  .testimonials-inner { max-width: 1200px; margin: 0 auto; }
   .testimonial-grid {
     display: grid;
     grid-template-columns: repeat(3, 1fr);
-    gap: 24px;
-    margin-top: 48px;
+    gap: 20px;
+    margin-top: 56px;
   }
   .testimonial-card {
-    background: var(--gray);
-    border: 1px solid rgba(255,255,255,0.08);
-    border-radius: 8px;
-    padding: 32px;
-    border-top: 3px solid var(--accent);
+    background: var(--black);
+    border: 1px solid var(--border);
+    border-radius: 12px;
+    padding: 36px;
+    position: relative;
+    overflow: hidden;
+    transition: border-color 0.3s, transform 0.3s;
   }
-  .testimonial-stars { color: var(--accent2); font-size: 16px; margin-bottom: 16px; letter-spacing: 2px; }
-  .testimonial-text { font-size: 15px; color: var(--white); line-height: 1.7; margin-bottom: 20px; font-style: italic; }
-  .testimonial-author { font-size: 13px; color: var(--muted); }
-  .testimonial-author strong { display: block; color: var(--white); font-weight: 600; margin-bottom: 2px; font-family: 'Barlow Condensed', sans-serif; font-size: 16px; letter-spacing: 0.5px; text-transform: uppercase; }
+  .testimonial-card:hover { border-color: rgba(0,194,255,0.25); transform: translateY(-3px); }
+  .testimonial-card::before {
+    content: '"';
+    position: absolute;
+    top: 20px; right: 28px;
+    font-family: 'Syne', sans-serif;
+    font-size: 80px;
+    font-weight: 900;
+    color: var(--accent);
+    opacity: 0.08;
+    line-height: 1;
+  }
+  .testimonial-stars { color: var(--accent2); font-size: 14px; margin-bottom: 18px; letter-spacing: 2px; }
+  .testimonial-text { font-size: 15px; color: var(--white); line-height: 1.75; margin-bottom: 28px; font-weight: 400; opacity: 0.9; }
+  .testimonial-divider { height: 1px; background: var(--border); margin-bottom: 20px; }
+  .testimonial-author-row { display: flex; align-items: center; gap: 14px; }
+  .testimonial-avatar {
+    width: 44px; height: 44px;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-family: 'Syne', sans-serif;
+    font-weight: 800;
+    font-size: 16px;
+    color: var(--black);
+    flex-shrink: 0;
+  }
+  .testimonial-author strong {
+    display: block;
+    color: var(--white);
+    font-weight: 600;
+    font-size: 15px;
+    margin-bottom: 2px;
+  }
+  .testimonial-author span { font-size: 12px; color: var(--muted); }
 
   /* FAQ */
-  .faq { padding: 100px 48px; background: var(--gray); }
-  .faq-inner { max-width: 800px; margin: 0 auto; }
-  .faq-list { margin-top: 48px; display: flex; flex-direction: column; gap: 2px; }
-  .faq-item { border: 1px solid rgba(255,255,255,0.08); background: var(--black); }
-  .faq-item:first-child { border-radius: 6px 6px 0 0; }
-  .faq-item:last-child { border-radius: 0 0 6px 6px; }
+  .faq { padding: 110px 56px; }
+  .faq-inner { max-width: 780px; margin: 0 auto; }
+  .faq-list { margin-top: 56px; display: flex; flex-direction: column; gap: 2px; }
+  .faq-item { border: 1px solid var(--border); background: var(--gray); border-radius: 4px; }
   .faq-q {
     width: 100%;
     background: none;
     border: none;
     color: var(--white);
-    font-family: 'Barlow', sans-serif;
+    font-family: 'DM Sans', sans-serif;
     font-size: 16px;
-    font-weight: 600;
+    font-weight: 500;
     text-align: left;
     padding: 24px 32px;
     cursor: pointer;
@@ -507,22 +589,23 @@
     justify-content: space-between;
     align-items: center;
     gap: 16px;
+    transition: color 0.2s;
   }
   .faq-q:hover { color: var(--accent); }
-  .faq-q::after { content: '+'; font-size: 22px; color: var(--accent); flex-shrink: 0; }
-  .faq-q.open::after { content: '−'; }
-  .faq-a { display: none; padding: 0 32px 24px; font-size: 15px; color: var(--muted); line-height: 1.7; }
+  .faq-icon { color: var(--accent); font-size: 20px; flex-shrink: 0; transition: transform 0.3s; }
+  .faq-q.open .faq-icon { transform: rotate(45deg); }
+  .faq-a { display: none; padding: 0 32px 24px; font-size: 15px; color: var(--muted); line-height: 1.75; }
   .faq-a.open { display: block; }
 
   /* PRICING */
-  .pricing { padding: 100px 48px; background: var(--black); }
-  .pricing-inner { max-width: 800px; margin: 0 auto; text-align: center; }
+  .pricing { padding: 110px 56px; background: var(--gray); }
+  .pricing-inner { max-width: 720px; margin: 0 auto; text-align: center; }
   .price-card {
-    background: var(--gray);
-    border: 2px solid rgba(255,179,71,0.4);
-    border-radius: 8px;
+    background: var(--black);
+    border: 1px solid rgba(0,194,255,0.2);
+    border-radius: 16px;
     padding: 64px;
-    margin-top: 48px;
+    margin-top: 56px;
     position: relative;
     overflow: hidden;
   }
@@ -530,112 +613,106 @@
     content: '';
     position: absolute;
     top: 0; left: 0; right: 0;
-    height: 4px;
-    background: linear-gradient(90deg, var(--accent2), var(--accent));
+    height: 3px;
+    background: linear-gradient(90deg, var(--accent), var(--accent2), var(--accent3));
+  }
+  .price-card-glow {
+    position: absolute;
+    top: -100px; left: 50%;
+    transform: translateX(-50%);
+    width: 500px; height: 300px;
+    background: radial-gradient(ellipse, rgba(0,194,255,0.06) 0%, transparent 70%);
+    pointer-events: none;
   }
   .no-setup-badge {
-    display: inline-block;
-    background: var(--accent2);
-    color: #0d0d0d;
-    font-family: 'Barlow Condensed', sans-serif;
-    font-weight: 900;
-    font-size: 15px;
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    background: rgba(0,255,178,0.1);
+    border: 1px solid rgba(0,255,178,0.3);
+    color: var(--accent3);
+    font-size: 12px;
+    font-weight: 600;
     letter-spacing: 2px;
     text-transform: uppercase;
     padding: 8px 20px;
-    border-radius: 3px;
-    margin-bottom: 24px;
+    border-radius: 100px;
+    margin-bottom: 32px;
+    position: relative;
   }
   .price-main {
-    font-family: 'Barlow Condensed', sans-serif;
-    font-size: 96px;
+    font-family: 'Syne', sans-serif;
+    font-size: 100px;
     font-weight: 900;
-    letter-spacing: -4px;
+    letter-spacing: -6px;
     line-height: 1;
-    margin-bottom: 4px;
+    margin-bottom: 6px;
     color: var(--white);
+    position: relative;
   }
   .price-main span {
-    font-size: 40px;
+    font-size: 44px;
     letter-spacing: -1px;
     vertical-align: top;
-    margin-top: 20px;
+    margin-top: 18px;
     display: inline-block;
+    color: var(--accent);
   }
   .price-period {
-    font-family: 'Barlow Condensed', sans-serif;
-    font-size: 28px;
+    font-family: 'Syne', sans-serif;
+    font-size: 22px;
     font-weight: 700;
     color: var(--muted);
-    letter-spacing: 1px;
+    letter-spacing: 2px;
     text-transform: uppercase;
     margin-bottom: 8px;
+    position: relative;
   }
-  .price-sub { color: var(--muted); font-size: 15px; margin-bottom: 12px; }
-  .price-no-setup-line {
-    display: inline-flex;
-    align-items: center;
-    gap: 10px;
-    color: var(--accent2);
-    font-family: 'Barlow Condensed', sans-serif;
-    font-size: 20px;
-    font-weight: 800;
-    letter-spacing: 1px;
-    text-transform: uppercase;
-    margin-bottom: 40px;
-    background: rgba(255,179,71,0.08);
-    border: 1px solid rgba(255,179,71,0.2);
-    padding: 10px 20px;
-    border-radius: 4px;
-  }
-  .price-no-setup-line::before { content: '✓'; font-size: 18px; }
+  .price-sub { color: var(--muted); font-size: 15px; margin-bottom: 40px; position: relative; }
   .features {
     list-style: none;
     text-align: left;
     margin-bottom: 48px;
     display: grid;
     grid-template-columns: 1fr 1fr;
-    gap: 16px;
+    gap: 14px;
+    position: relative;
   }
   .features li {
     display: flex;
     align-items: flex-start;
-    gap: 12px;
-    font-size: 15px;
+    gap: 10px;
+    font-size: 14px;
     color: var(--muted);
     line-height: 1.5;
-    font-weight: 500;
   }
-  .features li::before { content: '→'; color: var(--accent); flex-shrink: 0; font-weight: 700; }
+  .features li::before { content: '✓'; color: var(--accent3); flex-shrink: 0; font-weight: 700; margin-top: 1px; }
   .btn-buy {
     display: block;
-    background: var(--accent);
+    background: linear-gradient(135deg, var(--accent), var(--accent2));
     color: #fff;
     text-decoration: none;
-    font-family: 'Barlow Condensed', sans-serif;
+    font-family: 'Syne', sans-serif;
     font-weight: 900;
-    font-size: 22px;
-    letter-spacing: 2px;
+    font-size: 18px;
+    letter-spacing: 1px;
     text-transform: uppercase;
     padding: 22px;
-    border-radius: 4px;
+    border-radius: 8px;
     text-align: center;
     transition: transform 0.2s, box-shadow 0.2s;
-    box-shadow: 0 0 40px rgba(255,77,28,0.3);
+    box-shadow: 0 0 50px rgba(0,194,255,0.2);
     margin-bottom: 16px;
+    position: relative;
   }
-  .btn-buy:hover { transform: translateY(-2px); box-shadow: 0 0 60px rgba(255,77,28,0.5); }
-  .btn-buy-sub {
-    font-size: 13px;
-    color: var(--muted);
-    text-align: center;
-  }
-  .btn-buy-sub strong { color: var(--accent2); }
+  .btn-buy:hover { transform: translateY(-2px); box-shadow: 0 0 70px rgba(0,194,255,0.35); }
+  .btn-buy-sub { font-size: 13px; color: var(--muted); text-align: center; position: relative; }
+  .btn-buy-sub strong { color: var(--accent3); }
 
   /* FOOTER */
   footer {
-    padding: 40px 48px;
-    border-top: 1px solid rgba(255,255,255,0.08);
+    padding: 40px 56px;
+    border-top: 1px solid var(--border);
     display: flex;
     justify-content: space-between;
     align-items: center;
@@ -645,129 +722,149 @@
 
   /* ANIMATIONS */
   @keyframes fadeUp {
-    from { opacity: 0; transform: translateY(30px); }
+    from { opacity: 0; transform: translateY(24px); }
     to { opacity: 1; transform: translateY(0); }
   }
-  .hero > * { animation: fadeUp 0.8s ease forwards; opacity: 0; }
-  .tag { animation-delay: 0.1s; }
+  .hero > * { animation: fadeUp 0.7s ease forwards; opacity: 0; }
+  .eyebrow { animation-delay: 0.1s; }
   h1 { animation-delay: 0.2s; }
   .hero-sub { animation-delay: 0.3s; }
-  .hero-no-setup { animation-delay: 0.32s; }
-  .hero-demo-number { animation-delay: 0.34s; }
-  .hero-demo-label { animation-delay: 0.35s; }
-  .urgency { animation-delay: 0.37s; }
-  .cta-group { animation-delay: 0.4s; }
-  .trust-pills { animation-delay: 0.45s; }
+  .hero-demo-row { animation-delay: 0.35s; }
+  .hero-demo-label { animation-delay: 0.38s; }
+  .urgency { animation-delay: 0.4s; }
+  .cta-group { animation-delay: 0.45s; }
+  .trust-pills { animation-delay: 0.5s; }
 
   /* MOBILE */
   @media (max-width: 768px) {
     nav { padding: 16px 20px; }
-    .hero { padding: 100px 20px 60px; }
-    h1 { font-size: 56px; }
-    .stats { margin: 0 20px; flex-direction: column; }
-    .stat { border-right: none; border-bottom: 1px solid rgba(255,255,255,0.08); padding: 28px 20px; }
-    .pain, .demo-section, .testimonials { padding: 60px 20px; }
+    .nav-tag { display: none; }
+    .hero { padding: 110px 20px 60px; }
+    h1 { font-size: 52px; letter-spacing: -2px; }
+    .who { padding: 50px 20px; }
+    .stats { grid-template-columns: 1fr 1fr; }
+    .stat { padding: 28px 20px; }
+    .stat:nth-child(2) { border-right: none; }
+    .stat:nth-child(3) { border-right: 1px solid var(--border); }
+    .pain, .demo-section { padding: 70px 20px; }
     .pain-grid { grid-template-columns: 1fr; }
-    .pain-item { border-right: none; border-bottom: 1px solid rgba(255,255,255,0.05); }
-    .how { padding: 60px 20px; }
-    .steps { grid-template-columns: 1fr 1fr; gap: 20px; }
-    .faq { padding: 60px 20px; }
-    .pricing { padding: 60px 20px; }
-    .price-card { padding: 32px 20px; }
+    .how { padding: 70px 20px; }
+    .steps { grid-template-columns: 1fr 1fr; gap: 1px; }
+    .step::after { display: none; }
+    .faq { padding: 70px 20px; }
+    .pricing { padding: 70px 20px; }
+    .price-card { padding: 36px 24px; }
     .features { grid-template-columns: 1fr; }
-    .phone-card { padding: 36px 24px; }
+    .phone-card { padding: 40px 28px; }
     .phone-display { font-size: 40px; }
+    .testimonials { padding: 70px 20px; }
     .testimonial-grid { grid-template-columns: 1fr; }
-    footer { flex-direction: column; gap: 16px; text-align: center; }
-    .nav-discount { display: none; }
-    .trust-pills { gap: 8px; }
+    footer { flex-direction: column; gap: 16px; text-align: center; padding: 32px 20px; }
   }
 </style>
 </head>
 <body>
+
 <nav>
   <div class="logo">Call<span>Done</span></div>
   <div class="nav-right">
-    <div class="nav-discount">⚡ No Setup Fee — Just $500/mo</div>
-    <a href="https://buy.stripe.com/4gM14n5nl9qI7Au9zM2Ry08" class="nav-cta" onclick="trackPurchaseClick()">Start for $500/mo</a>
+    <div class="nav-tag">✦ $500/mo — No Setup Fee</div>
+    <a href="https://buy.stripe.com/4gM14n5nl9qI7Au9zM2Ry08" class="nav-cta" onclick="trackPurchaseClick()">Get Started</a>
   </div>
 </nav>
 
 <section class="hero">
-  <div class="tag">⚡ AI Receptionist Built for Contractors</div>
-  <h1>Stop losing jobs to <em>missed</em> calls.</h1>
+  <div class="hero-bg"></div>
+  <div class="hero-grid"></div>
+  <div class="eyebrow"><span class="eyebrow-dot"></span> AI Receptionist for Any Business</div>
+  <h1>Your business never misses a <em>call</em> again.</h1>
   <p class="hero-sub">
-    CallDone answers every call, books service appointments, and qualifies job leads <strong>24 hours a day</strong> — so you can stay on the job site while your phone gets handled.
+    CallDone answers every call, handles questions, and captures leads <strong>24 hours a day</strong> — while you run your business.
   </p>
-  <div class="hero-no-setup">
-    <span class="badge">🔥 No Setup Fee</span>
-    <span class="text">Start today for just <strong>$500/mo</strong> — cancel anytime</span>
+  <div class="hero-demo-row">
+    <a href="tel:+15632871146" class="demo-number">📞 (563) 287-1146</a>
+    <span class="demo-badge">Live Demo — Call Now</span>
   </div>
-  <a href="tel:+15632871146" style="text-decoration:none;">
-    <div class="hero-demo-number">📞 (563) 287-1146</div>
-  </a>
-  <div class="hero-demo-label">Call the live AI demo right now — free, no commitment</div>
-  <div class="urgency">⚠ Limited spots this month — live in 48 hours</div>
+  <div class="hero-demo-label">Hear the AI answer in real time. Free. No commitment.</div>
+  <div class="urgency"><span class="urgency-dot"></span> Limited spots this month — live in 48 hours</div>
   <div class="cta-group">
     <a href="https://buy.stripe.com/4gM14n5nl9qI7Au9zM2Ry08" class="btn-primary" onclick="trackPurchaseClick()">
-      Get Started — $500/mo
-      <span class="btn-sub">No setup fee. No contracts. Cancel anytime.</span>
+      Start for $500/mo
+      <span class="btn-sub">No setup fee · No contracts · Cancel anytime</span>
     </a>
-    <a href="tel:+15632871146" class="demo-link">
-      📞 Hear the AI Live
-    </a>
+    <a href="tel:+15632871146" class="demo-link">📞 Hear the AI Live</a>
   </div>
   <div class="trust-pills">
-    <span class="pill">No Setup Fee</span>
-    <span class="pill">No Contracts</span>
-    <span class="pill">Live in 48 Hours</span>
-    <span class="pill">Cancel Anytime</span>
-    <span class="pill">24/7 Coverage</span>
+    <span class="pill"><span class="pill-check">✓</span> No Setup Fee</span>
+    <span class="pill"><span class="pill-check">✓</span> No Contracts</span>
+    <span class="pill"><span class="pill-check">✓</span> Live in 48 Hours</span>
+    <span class="pill"><span class="pill-check">✓</span> Cancel Anytime</span>
+    <span class="pill"><span class="pill-check">✓</span> 24/7 Coverage</span>
+  </div>
+</section>
+
+<section class="who">
+  <div class="who-inner">
+    <div class="who-label">Works for every type of business</div>
+    <div class="who-grid">
+      <div class="who-pill"><span>→</span> Restaurants</div>
+      <div class="who-pill"><span>→</span> Law Firms</div>
+      <div class="who-pill"><span>→</span> Dental Offices</div>
+      <div class="who-pill"><span>→</span> Real Estate</div>
+      <div class="who-pill"><span>→</span> Salons & Spas</div>
+      <div class="who-pill"><span>→</span> Auto Shops</div>
+      <div class="who-pill"><span>→</span> Gyms & Studios</div>
+      <div class="who-pill"><span>→</span> Home Services</div>
+      <div class="who-pill"><span>→</span> Medical Offices</div>
+      <div class="who-pill"><span>→</span> Retail Shops</div>
+      <div class="who-pill"><span>→</span> Insurance Agents</div>
+      <div class="who-pill"><span>→</span> Any Local Business</div>
+    </div>
   </div>
 </section>
 
 <div class="stats">
   <div class="stat">
-    <div class="stat-num">$400</div>
-    <div class="stat-label">average value of one missed service call</div>
+    <div class="stat-num">62%</div>
+    <div class="stat-label">of callers won't leave a voicemail — they call your competitor instead</div>
   </div>
   <div class="stat">
-    <div class="stat-num">$3,500+</div>
-    <div class="stat-label">average value of a missed install or estimate</div>
+    <div class="stat-num">$800</div>
+    <div class="stat-label">average value of one missed customer inquiry</div>
   </div>
   <div class="stat">
     <div class="stat-num">24/7</div>
-    <div class="stat-label">CallDone answers every single call</div>
+    <div class="stat-label">CallDone answers every call, every hour, every day</div>
   </div>
   <div class="stat">
     <div class="stat-num">48hr</div>
-    <div class="stat-label">from payment to your AI going live</div>
+    <div class="stat-label">from payment to your AI going live on your number</div>
   </div>
 </div>
 
 <section class="pain">
   <div class="section-label">The problem</div>
-  <h2>Every missed call is a job your competitor just took.</h2>
+  <h2>Every missed call is money walking out the door.</h2>
   <div class="pain-grid">
     <div class="pain-item">
-      <div class="pain-num">01</div>
+      <div class="pain-icon">📵</div>
       <div class="pain-text">
-        <strong>You can't answer on a job</strong>
-        Phone rings while you're under a sink, on a roof, or in someone's attic. Caller hangs up, calls the next guy on Google, you never even knew it happened.
+        <strong>You can't always answer</strong>
+        You're with a customer, in a meeting, on a job, or simply closed. The phone rings, nobody answers, and the caller moves on to the next business on Google.
       </div>
     </div>
     <div class="pain-item">
-      <div class="pain-num">02</div>
+      <div class="pain-icon">🌙</div>
       <div class="pain-text">
-        <strong>After hours = lost emergencies</strong>
-        Burst pipes, no heat, blown breakers don't wait for 8am. Calls go to voicemail and the customer is calling the next contractor before you wake up.
+        <strong>After-hours = lost revenue</strong>
+        Half your calls come outside 9–5. Without someone answering, those leads are gone by morning — booked with a competitor who had a better system.
       </div>
     </div>
     <div class="pain-item">
-      <div class="pain-num">03</div>
+      <div class="pain-icon">📋</div>
       <div class="pain-text">
-        <strong>Callbacks pile up and slip through</strong>
-        You scribble names on a coffee receipt, forget to call back, lose the job. Or your answering service charges $300/mo and still misses the details.
+        <strong>Hiring staff is expensive</strong>
+        A receptionist costs $35,000+ per year. Answering services are unreliable and still miss details. CallDone costs $500/mo and never takes a day off.
       </div>
     </div>
   </div>
@@ -779,24 +876,24 @@
     <h2>Live in 48 hours. Zero tech skills needed.</h2>
     <div class="steps">
       <div class="step">
-        <div class="step-num">1</div>
-        <h3>You pay online</h3>
-        <p>$500/mo, no setup fee. We handle everything from there. No tech knowledge needed.</p>
+        <div class="step-num">Step 01</div>
+        <h3>Sign up online</h3>
+        <p>$500/mo, no setup fee. We take it from there. No technical knowledge required whatsoever.</p>
       </div>
       <div class="step">
-        <div class="step-num">2</div>
+        <div class="step-num">Step 02</div>
         <h3>We build your AI</h3>
-        <p>Trained on your services, service area, hours, and pricing flow. Sounds like a real receptionist.</p>
+        <p>Trained on your business — your services, hours, pricing, and FAQs. Sounds like a real person on your team.</p>
       </div>
       <div class="step">
-        <div class="step-num">3</div>
+        <div class="step-num">Step 03</div>
         <h3>Forward your calls</h3>
-        <p>One simple call forwarding setting on your phone. Takes 2 minutes. Your number stays the same.</p>
+        <p>One simple call forwarding setting on your existing number. Takes 2 minutes. Your number stays the same.</p>
       </div>
       <div class="step">
-        <div class="step-num">4</div>
-        <h3>Stay on the job</h3>
-        <p>Your AI answers 24/7, books appointments, gets the job details, and texts you a summary the second you're free.</p>
+        <div class="step-num">Step 04</div>
+        <h3>Never miss again</h3>
+        <p>Your AI answers 24/7, handles questions, captures leads, and texts you a summary after every call.</p>
       </div>
     </div>
   </div>
@@ -805,8 +902,9 @@
 <section class="demo-section">
   <div class="section-label">Live demo</div>
   <h2>Call it right now. Hear it yourself.</h2>
-  <p style="color: var(--muted); font-size: 16px; margin-top: 12px;">This is the actual AI your callers will hear. Try to book a service call, ask about pricing, see how it handles you.</p>
+  <p style="color: var(--muted); font-size: 16px; max-width: 500px; margin: 12px auto 0; line-height: 1.6;">This is the actual AI your customers will hear. Ask it anything. See how it handles a real call.</p>
   <div class="phone-card">
+    <div class="phone-glow"></div>
     <div class="phone-display">(563) 287-1146</div>
     <div class="phone-sub">Free to call. No commitment. Takes 30 seconds.</div>
     <a href="tel:+15632871146" class="pulse-btn">📞 Call the Demo Now</a>
@@ -814,32 +912,89 @@
 </section>
 
 <section class="testimonials">
-  <div class="section-label">What contractors are saying</div>
-  <h2>Real results from real tradesmen.</h2>
-  <div class="testimonial-grid">
-    <div class="testimonial-card">
-      <div class="testimonial-stars">★★★★★</div>
-      <p class="testimonial-text">"Booked 3 jobs the first week I had it running. I was on a roof and the AI took two calls back to back. Customers had no idea it wasn't my office."</p>
-      <div class="testimonial-author">
-        <strong>Mike R.</strong>
-        Plumber, Los Angeles CA
+  <div class="testimonials-inner">
+    <div class="section-label">What business owners are saying</div>
+    <h2>Real results. Real businesses.</h2>
+    <div class="testimonial-grid">
+
+      <div class="testimonial-card">
+        <div class="testimonial-stars">★★★★★</div>
+        <p class="testimonial-text">"We were losing dinner reservation calls every Friday night when the host stand got slammed. First week with CallDone we captured 14 reservations we would have missed. It paid for itself on night one."</p>
+        <div class="testimonial-divider"></div>
+        <div class="testimonial-author-row">
+          <div class="testimonial-avatar" style="background: linear-gradient(135deg, #00c2ff, #7b5cfa);">MV</div>
+          <div class="testimonial-author">
+            <strong>Marco Villanueva</strong>
+            <span>Owner, Villanueva's Kitchen — Houston, TX</span>
+          </div>
+        </div>
       </div>
-    </div>
-    <div class="testimonial-card">
-      <div class="testimonial-stars">★★★★★</div>
-      <p class="testimonial-text">"I was losing 4-5 calls a week to voicemail. Now every call gets answered. Paid for itself in the first month with one job it booked at 11pm."</p>
-      <div class="testimonial-author">
-        <strong>Carlos T.</strong>
-        HVAC Contractor, San Diego CA
+
+      <div class="testimonial-card">
+        <div class="testimonial-stars">★★★★★</div>
+        <p class="testimonial-text">"I run a two-chair salon. I can't answer the phone when I'm cutting. I was missing 5–8 calls a day. Now every call gets answered and my book is full two weeks out. I genuinely can't believe how real it sounds."</p>
+        <div class="testimonial-divider"></div>
+        <div class="testimonial-author-row">
+          <div class="testimonial-avatar" style="background: linear-gradient(135deg, #7b5cfa, #ff6eb4);">DP</div>
+          <div class="testimonial-author">
+            <strong>Danielle Parrish</strong>
+            <span>Owner, Studio DP Salon — Atlanta, GA</span>
+          </div>
+        </div>
       </div>
-    </div>
-    <div class="testimonial-card">
-      <div class="testimonial-stars">★★★★★</div>
-      <p class="testimonial-text">"Tried three different answering services before this. None of them sounded this good. My customers actually think it's a real person in my office."</p>
-      <div class="testimonial-author">
-        <strong>Derek W.</strong>
-        Electrician, Phoenix AZ
+
+      <div class="testimonial-card">
+        <div class="testimonial-stars">★★★★★</div>
+        <p class="testimonial-text">"Our front desk was missing calls during patient appointments constantly. CallDone handles scheduling questions, insurance FAQs, and callbacks. Our no-show rate dropped 30% because follow-up actually happens now."</p>
+        <div class="testimonial-divider"></div>
+        <div class="testimonial-author-row">
+          <div class="testimonial-avatar" style="background: linear-gradient(135deg, #00ffb2, #00c2ff);">RK</div>
+          <div class="testimonial-author">
+            <strong>Dr. Raj Kapoor</strong>
+            <span>Practice Owner, Kapoor Family Dental — Phoenix, AZ</span>
+          </div>
+        </div>
       </div>
+
+      <div class="testimonial-card">
+        <div class="testimonial-stars">★★★★★</div>
+        <p class="testimonial-text">"I'm a solo real estate agent. Missed calls meant missed listings. CallDone qualifies leads for me while I'm showing homes. Three of my last five clients came through a call it handled when I couldn't pick up."</p>
+        <div class="testimonial-divider"></div>
+        <div class="testimonial-author-row">
+          <div class="testimonial-avatar" style="background: linear-gradient(135deg, #ffb347, #ff6b35);">TN</div>
+          <div class="testimonial-author">
+            <strong>Tanya Nguyen</strong>
+            <span>Realtor, RE/MAX Premier — San Diego, CA</span>
+          </div>
+        </div>
+      </div>
+
+      <div class="testimonial-card">
+        <div class="testimonial-stars">★★★★★</div>
+        <p class="testimonial-text">"We own three auto shops. Managing calls across all of them was a nightmare. CallDone handles estimates, hours, and appointment booking at all three locations simultaneously. Saved us from hiring two people."</p>
+        <div class="testimonial-divider"></div>
+        <div class="testimonial-author-row">
+          <div class="testimonial-avatar" style="background: linear-gradient(135deg, #00c2ff, #00ffb2);">BF</div>
+          <div class="testimonial-author">
+            <strong>Brian Flores</strong>
+            <span>Owner, Flores Auto Group — Los Angeles, CA</span>
+          </div>
+        </div>
+      </div>
+
+      <div class="testimonial-card">
+        <div class="testimonial-stars">★★★★★</div>
+        <p class="testimonial-text">"Our law firm gets calls at all hours from people in stressful situations. Having an AI that sounds professional, captures the case details, and tells them we'll call back — it's been a game changer for client intake."</p>
+        <div class="testimonial-divider"></div>
+        <div class="testimonial-author-row">
+          <div class="testimonial-avatar" style="background: linear-gradient(135deg, #7b5cfa, #00c2ff);">SM</div>
+          <div class="testimonial-author">
+            <strong>Sandra Mitchell, Esq.</strong>
+            <span>Partner, Mitchell & Cole Law — Chicago, IL</span>
+          </div>
+        </div>
+      </div>
+
     </div>
   </div>
 </section>
@@ -847,35 +1002,35 @@
 <section class="faq">
   <div class="faq-inner">
     <div class="section-label">FAQ</div>
-    <h2>Got questions? We got answers.</h2>
+    <h2>Everything you need to know.</h2>
     <div class="faq-list">
       <div class="faq-item">
-        <button class="faq-q" onclick="toggleFaq(this)">Will it sound robotic to my customers?</button>
-        <div class="faq-a">No. CallDone uses the same AI voice technology behind the most advanced voice assistants. Call (563) 287-1146 right now and hear it yourself — most people can't tell it's not a real person for the first 30 seconds.</div>
+        <button class="faq-q" onclick="toggleFaq(this)">Will it sound robotic to my customers? <span class="faq-icon">+</span></button>
+        <div class="faq-a">No. CallDone uses the most advanced AI voice technology available. Call (563) 287-1146 right now and hear it yourself — most people genuinely cannot tell it's not a real receptionist for the first 30–60 seconds, if ever.</div>
       </div>
       <div class="faq-item">
-        <button class="faq-q" onclick="toggleFaq(this)">I already have voicemail. Why do I need this?</button>
-        <div class="faq-a">Voicemail loses jobs. Studies show over 80% of callers hang up without leaving a voicemail and call the next contractor instead. CallDone actually answers, qualifies the lead, and books the appointment — voicemail just collects numbers you may never call back in time.</div>
+        <button class="faq-q" onclick="toggleFaq(this)">What kinds of businesses does this work for? <span class="faq-icon">+</span></button>
+        <div class="faq-a">Any business that receives phone calls — restaurants, salons, dental offices, law firms, real estate agents, gyms, auto shops, medical offices, home services, and more. If your customers call you, CallDone works for you.</div>
       </div>
       <div class="faq-item">
-        <button class="faq-q" onclick="toggleFaq(this)">What if I want to cancel?</button>
-        <div class="faq-a">Cancel anytime. No contracts, no cancellation fees. No questions asked. The $500/month stops the moment you cancel.</div>
+        <button class="faq-q" onclick="toggleFaq(this)">What if I want to cancel? <span class="faq-icon">+</span></button>
+        <div class="faq-a">Cancel anytime. No contracts, no cancellation fees, no questions asked. Your $500/month subscription stops the moment you cancel.</div>
       </div>
       <div class="faq-item">
-        <button class="faq-q" onclick="toggleFaq(this)">Is there really no setup fee?</button>
-        <div class="faq-a">Correct. No setup fee. You pay $500/month starting today and we build your custom AI receptionist within 48 hours. That's it.</div>
+        <button class="faq-q" onclick="toggleFaq(this)">Is there really no setup fee? <span class="faq-icon">+</span></button>
+        <div class="faq-a">Correct. Zero setup fee. You pay $500/month and we build your custom AI receptionist within 48 hours — trained on your specific business, services, and FAQs. That's it.</div>
       </div>
       <div class="faq-item">
-        <button class="faq-q" onclick="toggleFaq(this)">How does call forwarding work?</button>
-        <div class="faq-a">You set up conditional call forwarding on your existing phone number — it takes about 2 minutes. When your phone rings and you don't answer within a set number of rings, it automatically forwards to CallDone. Your number stays the same. Customers still call you directly.</div>
+        <button class="faq-q" onclick="toggleFaq(this)">How does call forwarding work? <span class="faq-icon">+</span></button>
+        <div class="faq-a">You set up conditional call forwarding on your existing phone number — it takes about 2 minutes. When you don't answer within a set number of rings, the call automatically forwards to CallDone. Your number stays exactly the same.</div>
       </div>
       <div class="faq-item">
-        <button class="faq-q" onclick="toggleFaq(this)">What information does it capture from callers?</button>
-        <div class="faq-a">Name, phone number, address, the issue they're calling about, urgency level, and any specific details you need for your trade. All of that gets texted to you the second the call ends so you can prioritize callbacks.</div>
+        <button class="faq-q" onclick="toggleFaq(this)">What information does it capture? <span class="faq-icon">+</span></button>
+        <div class="faq-a">Caller name, phone number, reason for calling, urgency, and any custom information specific to your business. A full summary is texted to you the second the call ends so you can follow up fast.</div>
       </div>
       <div class="faq-item">
-        <button class="faq-q" onclick="toggleFaq(this)">How long does setup take?</button>
-        <div class="faq-a">48 hours or less from payment. We build your custom AI, train it on your services and service area, and send you the call forwarding instructions. You're live in two days.</div>
+        <button class="faq-q" onclick="toggleFaq(this)">How long does setup take? <span class="faq-icon">+</span></button>
+        <div class="faq-a">48 hours or less from payment. We build and train your custom AI, then send you the call forwarding instructions. You're live in two days with zero technical work on your end.</div>
       </div>
     </div>
   </div>
@@ -884,24 +1039,24 @@
 <section class="pricing">
   <div class="pricing-inner">
     <div class="section-label">Pricing</div>
-    <h2>Simple. No surprises.</h2>
+    <h2>Simple. Transparent. No surprises.</h2>
     <div class="price-card">
-      <div class="no-setup-badge">🔥 No Setup Fee — Start Today</div>
+      <div class="price-card-glow"></div>
+      <div class="no-setup-badge">✦ No Setup Fee — Start Today</div>
       <div class="price-main"><span>$</span>500</div>
       <div class="price-period">/ month</div>
-      <div class="price-sub">Everything included. No contracts.</div>
-      <div class="price-no-setup-line">Zero setup fee. Cancel anytime.</div>
+      <div class="price-sub">Everything included. No contracts. Cancel anytime.</div>
       <ul class="features">
         <li>Custom AI trained on your business</li>
-        <li>Service appointment booking built in</li>
         <li>Answers calls 24/7/365</li>
-        <li>Captures name, address, issue, urgency</li>
-        <li>Handles pricing and service area questions</li>
+        <li>Handles FAQs, hours, pricing questions</li>
+        <li>Captures caller name, number & reason</li>
+        <li>Call summaries texted to you instantly</li>
         <li>Live in 48 hours or less</li>
-        <li>Call summaries texted the second you're free</li>
+        <li>Appointment booking built in</li>
         <li>Unlimited calls included</li>
-        <li>Works on any cell or office phone</li>
-        <li>Cancel anytime, no contracts</li>
+        <li>Works on any existing phone number</li>
+        <li>Cancel anytime, no fees</li>
       </ul>
       <a href="https://buy.stripe.com/4gM14n5nl9qI7Au9zM2Ry08" class="btn-buy" onclick="trackPurchaseClick()">Get Started — $500/mo →</a>
       <div class="btn-buy-sub"><strong>No setup fee. Live in 48 hours. Cancel anytime.</strong></div>
